@@ -1,0 +1,569 @@
+---
+title: "Intro to Version Control with Git"
+teaching: 30
+exercises: 5
+questions:
+- "How do I use git to keep a record of my project?"
+objectives:
+- "Explain the purpose of version control."
+- "Introduce common git commands."
+- "Understand how to view and check out previous versions of files."
+keypoints:
+- "Git provides a way to track changes in your project."
+- "Git is a software for version control, and is separate from GitHub."
+---
+
+> ## Prerequisites
+>
+> - Created GitHub account (described in set-up)
+> - Configured git (described in set-up)
+{: .prereq}
+
+## Version Control
+
+Version control keeps a complete history of your work on a given project. It
+facilitates collaboration on projects where everyone can work freely on a part
+of the project without overriding others’ changes. You can move between past
+versions and rollback when needed. Also, you can review the
+history of your project through commit messages that describe changes on the source code
+and see what exactly has been modified in any given commit. You can see who made the
+changes and when it happened.
+
+This is greatly beneficial whether you are working independently or within a
+team.
+
+> ## git vs. GitHub
+>
+> `git` is the software used for version control, while GitHub is a hosting service. You can use `git` locally (without using an online hosting service), or you can use it with other hosting services such as GitLab or BitBucket.
+> Other examples of version control software include SVN and Mercurial.
+>
+{: .callout}
+
+MolSSI recommends using the software `git` for version control, and [GitHub] as a hosting service, though there are other options.
+
+Recommended Hosting Service: [GitHub]  
+Other hosting Services: [GitLab], [BitBucket]
+
+## Making Commits
+
+You should have git installed and configured from the setup instructions.
+
+In this section, we are going to create a file with some python functions and use `git` to track changes to our project.
+
+First, use a terminal to `cd` into the directory where you are keeping your files for the bootcamp (`Desktop/msse-bootcamp`). Make a folder for this project called `git-lesson`.
+
+~~~
+$ mkdir git-lesson
+$ cd git-lesson
+~~~
+{: .language-bash}
+
+We will do our first `git` project in this folder.
+
+In order for git to keep track of your project, or any changes in your project, you must first tell fit that you want it to do this. You must manually create check-points in your project if you wish to have points to return to. If we want to tell `git` that the folder we are working in represents a project, we do so with the command `git init`.
+
+~~~
+$ git init
+~~~
+{: .language-bash}
+
+You will see an output message similar to the following, except with the path to your directory
+
+~~~
+Initialized empty Git repository in /PATH/TO/REPOSITORY
+~~~
+{: .output}
+
+Now, when you check the contents of the directory using `ls`, it will still look empty. However, if you look at the hidden files (files or folders beginning with a dot `.`) using the `ls -a`, you will see that the directory is no longer empty
+
+~~~
+$ ls -a
+~~~
+{: .bash}
+
+~~~
+.   ..  .git
+~~~
+{:. output}
+
+The presence of the `.git` folder indicates to us that the `git` software is now watching the folder for changes. `.git` is a directory where `git` stores the repository data. We can tell from this output that we are in a git repository.
+
+Next, type
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+~~~
+{: .output}
+
+The command `git status` gives us the current state of our repository. This message tells us that we are on the `master` branch, and that we haven't yet created a checkpoint, or commit, of our project.
+
+## The 3 steps of a commit
+Now that we have `git` watching our folder for changes, let's add a README file to say a little about our project.
+
+Create a file called `README.md` in your text editor of choice. The README file is a file which typically accompanies git repositories and gives information about that project. We will use a syntax called [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for the README to give it a nice formatting when viewed online. 
+
+
+Markdown is a simple language which can be used for text formatting.
+
+Add the following to your README
+
+~~~
+# Git Lesson
+
+This lesson covers the basics of git for version control.
+~~~
+{: .language-markdown}
+
+Save this file an return to the terminal. Now that we have made a change, check the status of your project again.
+
+~~~
+$ git status
+~~~
+{: .language-python}
+
+~~~
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+~~~
+{: .output}
+
+Notice how `git` is watching our repository! It tells us that it sees that we have added a new file (`README.md`), but git is not actually tracking that file yet. Remember that `git` only watches what we tell it to watch, and only tracks changes in files we tell it to track changes in. Next, we will want to tell `git` to watch `README.md` and to make a version of our project which includes the file. In other words, we want to `commit` our changes.
+
+#### git add, git status, git commit
+
+Making a commit is like making a checkpoint for a particular version of your code. You can easily return to, or revert to that checkpoint.
+
+To create the checkpoint, we first have to make changes to our project. We might modify *many* files at a time in a repository. Thus, the first step in creating a checkpoint (or commit) is to tell `git` which files we want to include in the checkpoint. We do this with a command called `git add`. This adds files to what is called the *staging area*.
+
+Let's look at our output from `git status` again.
+
+~~~
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+~~~
+{: .output}
+
+Git even tells us to use `git add` to include what will be committed. Let's follow the instructions and tell `git` that we want to create a checkpoint with the current version of `README.md`
+
+~~~
+$ git add README.md
+~~~
+{: .language-bash}
+
+~~~
+$ git status
+~~~
+{: .language-bash}
+
+~~~
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   README.md
+~~~
+{: .output}
+
+We are now on the second step of creating a commit. We have `added` our files to the staging area. In our case, we only have one file in the staging area, but we could add more if we had more files.
+
+To create the checkpoint, or commit, we will now use the `git commit` command. We add a `-m` after the command for "message." Whenever you create a commit, you should write a message about what the commit does.
+
+~~~
+$ git commit -m "add README with information about project."
+~~~
+{: .bash}
+
+~~~
+[master (root-commit) dc466ff] add README with information about project
+ 1 file changed, 3 insertions(+)
+ create mode 100644 README.md
+ ~~~
+ {: .output}
+
+ Check your status after the commit
+
+ ~~~
+ $ git status
+ ~~~
+ {: .language-bash}
+
+~~~
+ On branch master
+nothing to commit, working tree clean
+~~~
+{: output}
+
+This message means nothing in the directory has changed since our last checkpoint, or commit.
+
+#### git log
+
+Next, type
+~~~
+$ git log
+~~~
+{: .bash}
+
+You will get an output resembling the following:
+~~~
+commit dc466ff70070312b622ab0041f4d770bd37bb248 (HEAD -> master)
+Author: Jessica Nash <janash@vt.edu>
+Date:   Wed Jul 8 15:59:57 2020 -0400
+
+    add README with information about project
+~~~
+{: .output}
+
+Each line of this log tells you something important about the commit, or check point that exists for the project. On the first line,
+
+~~~
+commit dc466ff70070312b622ab0041f4d770bd37bb248 (HEAD -> master)
+~~~
+
+You have a unique identifier for the commit (dc466...). You can use this number to reference this checkpoint. This number is unique for every commit, meaning you will have a different number than that shown above.
+
+Then, git records the name of the author who made the change.
+
+~~~
+Author: Your Name <your_email@something.com>
+~~~
+
+This should be your information. This way, anyone who is working with this project can see who made each commit. Note that this name and email address matches what you specified when you configured git in the setup.
+
+~~~
+Date:   Wed Jul 8 15:59:57 2020 -0400
+~~~
+Next, it lists the date and time the commit was made. 
+
+~~~
+    add README with information about project
+~~~
+
+Finally, there will be a blank line followed by a commit message. The commit message is a message whoever made the commit chose to write, but should describe the change that took place when the commit was made. You'll recognize this message from what you just wrote when you used the `git commit` command.
+
+To exit the log, press the `q` key.
+
+When we have more commits (or versions) of our code, `git log` will show a history of these commits, and they will all have the same format discussed above. Right now, we have only one commit.
+
+Let's continue to edit this readme to include more information. This is a file which will describe what is in this directory. Open `README.md` in your text editor of choice and add the following to the end 
+
+~~~
+This lesson is for the first day of the MSSE bootcamp.
+~~~
+
+> ## Check your understanding
+> Create a commit for these changes to your repository.
+>> ## Answer
+>> To add the file to the staging area and tell `git` we would like to track the changes to the file, we first use the `git add` command.
+>> ~~~
+>> $ git add README.md
+>> ~~~
+>> {: .language-bash}
+>> Now the file is *staged* for a commit.
+>> Next, create the commit using the `git commit` command.
+>> ~~~
+>> $ git commit -m "add more information to readme"
+>> ~~~
+>> {: .language-bash}
+> {: .solution}
+{: .challenge}
+
+
+Now, check `git status` and `git log`. You should see the following:
+
+~~~
+$ git status
+~~~
+{: .bash}
+
+~~~
+On branch master
+nothing to commit, working tree clean
+~~~
+{: .output}
+
+~~~
+$ git log
+~~~
+{: .bash}
+
+We now have a log with two commits. This means there are two versions of the repository we are working in.
+
+`git log` lists all commits  made to a repository in reverse chronological order.
+The listing for each commit includes the commit's full identifier,the commit's author, when it was created, and the commit title.
+
+We can see differences in files between commits using git diff.
+
+~~~
+$ git diff HEAD~1
+~~~
+{: .language-bash}
+
+Here HEAD refers to the point in our commit history (and current branch). When we use `~1`, we are asking git to show us the different of the current point minus one commit.
+
+Lines that have been added are indicated in green with a plus sign next to them ('+'), while lines that have been deleted, if we had any, would be indicated in red with a minus sign next to them ('-')
+
+## Viewing out previous versions
+
+If you need to check out a previous version
+
+~~~
+$ git checkout COMMIT_ID
+~~~
+
+This will temporarily revert the repository to whatever the state was at the specified commit ID.
+
+Let's checkout the version before we made the most recent edit to the README.
+
+~~~
+$ git log --oneline
+~~~
+
+~~~
+8c39357 (HEAD -> master) add more information to README
+dc466ff add README with information about project
+~~~
+{: .output}
+
+In this log, the commit ID is the first number on the left.
+
+To revert to the version of the repository where we first edited the readme, use the git checkout command with the appropriate commit id.
+
+~~~
+$ git checkout 8c39357
+~~~
+{: .language-bash}
+
+If you now view your readme, it is the previous version of the file.
+
+To return to the most recent point,
+
+~~~
+$ git checkout master
+~~~
+{: .language-bash}
+
+
+## Creating new features - using branches
+
+When you are working on a project to implement new features, it is a good practices to isolate the the changes you are making and work on one particular topic at a time. To do this, you can use something called a **branch** in git. Working on branches allows you to isolate particular changes. If you make sure that your code works before merging to your main or **master** branch, you will ensure that you always have a working version of code on your main branch.
+
+By default, you are typically in the master branch. To create a new branch and move to it, you can use the command
+
+~~~
+$ git switch -c new_branch_name
+~~~
+{: .language-bash}
+
+
+The command `git switch` switches branches when followed by a branch name. When you use the `-c` option, git will create a branch with the specified name and switch to it. For this exercise, we will add a new feature - we are going to a python function to print the [Zen of Python](https://www.python.org/dev/peps/pep-0020/).
+
+First, we'll create a new branch:
+
+~~~
+$ git switch -c zen
+~~~
+{: .language-bash}
+
+Next, create a new file called `quotes.py`. We are going to add the ability to print "The Zen of Python". You can get the Zen of Python by typing
+
+~~~
+import this
+~~~
+{: .language-python}
+
+into the interactive Python prompt.
+
+Add the function to your `quotes.py` file.
+
+~~~
+"""
+Some python quotes.
+"""
+
+def zen(with_attribution=True):
+    quote = """Beautiful is better than ugly.
+    Explicit is better than implicit.
+    Simple is better than complex.
+    Complex is better than complicated.
+    Flat is better than nested.
+    Sparse is better than dense.
+    Readability counts.
+    Special cases aren't special enough to break the rules.
+    Although practicality beats purity.
+    Errors should never pass silently.
+    Unless explicitly silenced.
+    In the face of ambiguity, refuse the temptation to guess.
+    There should be one-- and preferably only one --obvious way to do it.
+    Although that way may not be obvious at first unless you're Dutch.
+    Now is better than never.
+    Although never is often better than *right* now.
+    If the implementation is hard to explain, it's a bad idea.
+    If the implementation is easy to explain, it may be a good idea.
+    Namespaces are one honking great idea -- let's do more of those!"""
+
+    if with_attribution:
+      quote += "\n\tTim Peters"
+
+    return quote
+~~~
+{: .language-python}
+
+Verify that this function works in the interactive Python prompt. 
+
+~~~
+>>> import quotes
+>>> print(quotes.zen())
+~~~
+{: .language-python}
+
+Next, commit this change:
+
+~~~
+$ git add .
+$ git commit -m "add function to print Zen of Python
+~~~
+{: .language-bash}
+
+
+Let's switch back to the master branch to see what it is like. You can see a list of all the branches in your repo by using the command
+
+~~~
+$ git branch
+~~~
+{: .language-bash}
+
+This will list all of your branches. The active branch, or the branch you are on will be noted with an asterisk (`*`).
+
+To switch back to the master branch,
+
+~~~
+$ git switch master
+~~~
+{: .language-bash}
+
+On your master branch, you should see that there is no `functions.py` module.
+
+You can further verify this by using the `git log` command.
+
+Consider that at the same time we have some changes or features we'd like to implement. Let's make a branch to do a documentation update.
+
+Create a new branch
+
+~~~
+$ git switch -c doc_update
+~~~
+{: .language-bash}
+
+Let's add some information about developing on branches to the README. Update your README to include this information:
+
+~~~
+## Making a commit
+
+To make a commit - 
+
+`git add FILENAME`
+
+`git commit -m "a descriptive message about your change"`
+
+## Adding Features
+Features should be developed on branches. To create and switch to a branch, use the command
+
+`git switch -c new_branch_name`
+
+To switch to an existing branch, use
+
+`git switch branch_name`
+~~~
+{: .language-markdown}
+
+Save and commit this change.
+
+To incorporate these changes in master, you will need to do a `git merge`. When you do a merge, you should be on the branch you would like to merge into. In this case, we will first merge the changes from our `doc_update` branch, then our `zen` branch, so we should be on our `master` branch. Next we will use the `git merge` command.
+
+The syntax for this command is 
+
+~~~
+$ git merge branch_name
+~~~
+{: .language-bash}
+
+where `branch_name` is the name of the branch you would like to merge.
+
+We can merge our `doc_update` branch to get changes from our `doc_update` branch to our master branch:
+
+~~~
+$ get merge doc_update
+~~~
+{: .language-bash}
+
+Now our changes from the branch are on master.
+
+We can merge our `zen` branch to get our changes on master:
+
+~~~
+$ git merge zen
+~~~
+{: .language-bash}
+
+This time, you will see a different message, and a text editor will open for a merge commit message.
+
+~~~
+Merge made by the 'recursive' strategy.
+~~~
+
+This is because `master` and `zen` had development histories which have diverged (their commit histories were different). Git had to do some work in this case to merge the branches. A merge commit was created. 
+
+Merge commits create a branched git history. We can visualize the history of our project by adding `--graph` to git log. There are other workflows you can use to make the commit history more linear, but we will not discuss them in this course.
+
+~~~
+$ git log --branch
+~~~
+{: .language-bash}
+
+Once we are done with a feature branch,  we can delete it:
+
+~~~
+$ git branch -d zen
+~~~
+{: .language-bash}
+
+
+## More Tutorials
+If you want more `git`, see the following tutorials.
+
+### Basic git
+ - [Software Carpentry Version Control with Git](http://swcarpentry.github.io/git-novice/)
+ - [GitHub 15 Minutes to Learn Git](https://try.github.io/)
+ - [More on branches and merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+ - [Git Commit Best Practices](https://github.com/trein/dev-best-practices/wiki/Git-Commit-Best-Practices)
+
+
+{% include links.md %}
+[GitHub]: https://github.com
+[GitLab]: https://gitlab.com/
+[BitBucket]: https://bitbucket.org/
