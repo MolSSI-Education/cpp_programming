@@ -1,7 +1,7 @@
 ---
 title: "Intro to Monte Carlo Methods"
-teaching: 30
-exercises: 5
+teaching: 60
+exercises: 20
 questions:
 - "What are Monte Carlo methods?"
 - "How can I use Monte Carlo to estimate pi?"
