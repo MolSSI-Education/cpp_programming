@@ -60,7 +60,7 @@ $ cd git-lesson
 
 We will do our first `git` project in this folder.
 
-In order for git to keep track of your project, or any changes in your project, you must first tell fit that you want it to do this. You must manually create check-points in your project if you wish to have points to return to. If we want to tell `git` that the folder we are working in represents a project, we do so with the command `git init`.
+In order for git to keep track of your project, or any changes in your project, you must first tell git that you want it start a project and track your changes. After starting a project, you must manually create check-points if you wish to have points to return to. If we want to tell `git` that the folder we are working in represents a project, we do so with the command `git init`. In your folder, use the command
 
 ~~~
 $ git init
@@ -84,11 +84,11 @@ $ ls -a
 ~~~
 .   ..  .git
 ~~~
-{:. output}
+{: .output}
 
 The presence of the `.git` folder indicates to us that the `git` software is now watching the folder for changes. `.git` is a directory where `git` stores the repository data. We can tell from this output that we are in a git repository.
 
-Next, type
+Another way we can tell if we are in a git repository is to use the command `git status`.
 
 ~~~
 $ git status
@@ -128,7 +128,7 @@ Save this file an return to the terminal. Now that we have made a change, check 
 ~~~
 $ git status
 ~~~
-{: .language-python}
+{: .language-bash}
 
 ~~~
 On branch master
@@ -216,7 +216,7 @@ $ git commit -m "add README with information about project."
  On branch master
 nothing to commit, working tree clean
 ~~~
-{: output}
+{: .output}
 
 This message means nothing in the directory has changed since our last checkpoint, or commit.
 
@@ -351,10 +351,10 @@ dc466ff add README with information about project
 
 In this log, the commit ID is the first number on the left.
 
-To revert to the version of the repository where we first edited the readme, use the git checkout command with the appropriate commit id.
+To revert to the version of the repository where we first edited the readme, use the `git checkout` command with the appropriate commit id.
 
 ~~~
-$ git checkout 8c39357
+$ git checkout dc466ff
 ~~~
 {: .language-bash}
 
@@ -549,6 +549,7 @@ Once we are done with a feature branch,  we can delete it:
 
 ~~~
 $ git branch -d zen
+$ git branch -d doc_update
 ~~~
 {: .language-bash}
 
