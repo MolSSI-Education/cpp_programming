@@ -15,6 +15,8 @@ keypoints:
 
 # Rewriting our calculation of pi using NumPy
 
+This will be expanded with explanations. For now, just the final code.
+
 Final code:
 ~~~
 # Start by using 100 samples.
@@ -24,5 +26,7 @@ random_numbers = np.random.random(size=(n_samples,2))
 
 vals = np.sum(random_numbers**2, axis=1)
 num_inside = np.sum(vals < 1)
+
+pi = 4 * num_inside / n_samples
 ~~~
 {: .language-python}

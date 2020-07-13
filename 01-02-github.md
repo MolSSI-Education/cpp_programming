@@ -10,7 +10,6 @@ objectives:
 keypoints:
 - "You can use GitHub to store your project online where you or others can access it from a central repository."
 - "You can use GitHub to store your projects so you can work on them from multiple computers."
-
 ---
 
 ## Putting your repository on GitHub.
