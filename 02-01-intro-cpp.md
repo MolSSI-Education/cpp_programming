@@ -60,7 +60,7 @@ different 'feel' to the code, particularly when used side-by-side with older cod
 
 C++ is a compiled language. This means that the code you write is compiled
 into binary format by means of a compiler. This binary code is more
-directly-interpretable by your computer's processor without further need for
+directly interpretable by your computer's processor without further need for
 translation. Compiling also allows for optimization not generally possible
 in interpreted languages such as python.
 
@@ -161,6 +161,9 @@ void hello_world()
 }
 ~~~
 {: .language-cpp}
+
+Some types can be implicitly converted (such as between `int` and `double`). This can be
+the source of bugs, and compilers can be made to warn about such conversions.
 
 
 

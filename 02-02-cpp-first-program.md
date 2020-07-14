@@ -133,3 +133,51 @@ int main(void)
 Notice that we can keep inserting into `std::cout` by chaining together `<<` operators.
 
 If you build and run this executable again, the output should go where you expect.
+
+## Functions
+
+Words
+
+## Conditional statements
+
+Words
+
+## For loops
+
+Words
+
+## Compiler Errors
+
+If there is a problem with your code, the compiler will print an elaborate error message. Reading
+can take experience and intuition, as the message is not always the most helpful (although things
+are improving).
+
+As a rule of thumb, I usually follow this workflow when dealing with errors:
+
+1. Read the output from top to bottom (may require scrolling up in your terminal)
+1. Fix the first error found
+1. Build again
+1. If more errors, go to step 1.
+
+Often, a single error will cascade, causing more errors further down in the
+code. It is possible that what looks like many errors are caused by a single
+small error. Therefore, fixing errors one-at-a-time and then rebuilding is
+usually a good approach, especially as you begin building experience. With
+time, you will be able to spot batches of errors that can be fixed at once.
+ 
+> ## C++ Compiler Error Contests
+> C++ compilers are known having very verbose, incomprehensible error messages. There
+> are contests to see how you can get the longest error messages with the shortest
+> amount of code.
+{: .callout}
+
+Take your original `hello_world.cpp` and introduce a few errors that you may
+inadvertantly run across (if you haven't done so already). This will help you
+recognize what the compiler is telling you in the future. Some good things to
+mess up are:
+
+1. Remove a semicolon
+1. Remove the `#include` line
+1. Misspell `iostream`, `std::cout`, or `main`
+1. Forget the second `<<` (so that it reads `std::cout << "Hello, world!" std::endl`)
+
