@@ -34,7 +34,7 @@ where $$Q\left(\textbf{r}^N\right)$$ is the thermodynamic quantity of interest t
 
 This integral is very hard to compute, even for small atomic systems. For instance, a monoatomic system of 10 atoms leads to a 30 dimensional integral. 
 
-Yesterday, we learned about using Monte Carlo to evaluate integrals. We can apply this same approach to solve this integral. There are a few extra things we have to consider, however, because of the high dimensionality of the problem. We'll worry more about exactly how to implement this MC integration tomorrow. Today's lesson will focus on the model we are going to use for our Monte Carlo simulation.
+We learned in the previous lesson about using Monte Carlo to evaluate integrals. We can apply this same approach to solve this integral. There are a few extra things we have to consider, however, because of the high dimensionality of the problem. We'll worry more about exactly how to implement this MC integration tomorrow. Today's lesson will focus on the model we are going to use for our Monte Carlo simulation.
 
 ## Modeling the system
 
@@ -51,7 +51,9 @@ The first thing we will do is write a function which evaluates the LJ energy bas
 Commonly used parameters for simulating Argon are $$\sigma = 3.4 \unicode{xC5} $$ and $$\epsilon/k_B = 120~K$$
 
 ### Dealing with units
-Throughout this project, we will be working with reduced units. As stated above, common values are $$\sigma = 3.4 \unicode{xC5} $$ and $$\epsilon/k_B = 120~K$$. When converted to SI units, these quickly become inconvenient to work with. Often, in simulation, we will use something called *reduced units* in order to make calculations more convenient. This approach essentially scales quantities by characteristic values to get them closer to unity.
+Throughout this project, we will be working with **reduced units**. As stated above, common values are $$\sigma = 3.4 \unicode{xC5} $$ and $$\epsilon/k_B = 120~K$$. When converted to SI units, these quickly become inconvenient to work with. Often, in simulation, we will use something called *reduced units* in order to make calculations more convenient. This approach essentially scales quantities by characteristic values to get them closer to unity.
+
+For example, when working with Argon, the distances we compute will be in units of $$\sigma$$ instead of angstrom. 
 
 Quantity    | Expression
 ------------|------------
@@ -63,11 +65,22 @@ Volume      | $$V^* = V / \sigma^3 $$
 Temperature | $$T^* = k_{B} T / \epsilon $$
 Time        | $$t^* = t \sqrt{\frac{\epsilon}{ m \sigma^2}}$$
 
-Conveniently for us, Lennard Jones fluids have the surprisingly pleasant behavior of possessing universal behavior when expressed in terms of reduced units as:
+Conveniently for us, Lennard Jones fluids have the surprisingly pleasant behavior of possessing universal behavior when expressed in terms of reduced units as (you can verify this for yourself by substituting $$\sigma$$ and $$\epsilon$$ for their reduced unit expressions):
 
 $$ 	U^*\left(r_{ij} \right) = 4 \left[\left(\frac{1}{r^*_{ij}}\right)^{12} -\left(\frac{1}{r^*_{ij}}\right)^{6} \right] $$
 
 Since we know that we will need this as a function for our MC calculation, we will write a function for it to use later.
+
+Recall that in Python, we define a function using the syntax:
+
+~~~
+def function_name(function_arguments):
+    ** FUNCTION HERE **
+    return return_value
+~~~
+{: .language-python}
+
+For our `calculate_LJ` function, we will need to raise $$\frac{1}{r_ij}$$ to the 12th and 6th power. We will use the `pow` function in the python `math` module for this.
 
 ~~~
 def calculate_LJ(r_ij):
@@ -84,10 +97,10 @@ def calculate_LJ(r_ij):
 
 It is always a good idea to test the expected behavior of your function, or do some "sanity checks". We'll think about a few qualities of the LJ potential to check if our function is reasonable.
 
-The LJ potential has the following qualities - 
+From the equation for the LJ potential, we can see a few qualities that should be true if our function is implemented correctly - 
 
 1. This function should equal zero at r = 1.
-1. A minimum occurs at r = 2^(1/6) sigma. In our case, we are using reduced units and sigma is equal to one. This minimum will have a value equal to -epsilon, in our case -1. 
+1. A minimum occurs at $$r = 2^{1/6}\sigma.$$ In our case, we are using reduced units and $$\sigma$$ is equal to one. This minimum will have a value equal to $$-\epsilon$$, in our case -1. 
 
 We'll check these two test statements using something called an `assert` statement in Python. In an `assert` statement, you assert that something is `True`. If the statement following the word `assert` is `True`, nothing happens. However, if the statement is `False`, you will get an assertion error.
 
@@ -318,7 +331,7 @@ So that we have a system where we know the answer, we will use some sample syste
 
 ##### Sanity Checks for the Calculate Distance Function
 
-Let's try out our function on some values.
+Let's try out our function on some values. For completeness, we consider changing the x, y, and z coordinates.
 
 ~~~
 point_1 = [0, 0, 0]
@@ -347,7 +360,65 @@ assert dist1 == math.sqrt(2)
 ~~~
 {: .language-python}
 
-#### Reading coordinates from NIST file
+### Calculating the total pairwise LJ energy
+
+Next, we will write a function for calculating the total pair potential energy of a system of particles. Using the equation above, we can write the function:
+
+~~~
+def calculate_total_energy(coordinates):
+    """
+    Calculate the total Lennard Jones energy of a system of particles.
+    
+    Parameters
+    ----------
+    coordinates : list
+        Nested list containing particle coordinates.
+    
+    Returns
+    -------
+    total_energy : float
+        the total pairwise Lennard Jones energy
+    """
+    
+    total_energy = 0
+    num_atoms = len(coordinates)
+    for i in range(num_atoms):
+        for j in range(i+1, num_atoms):
+            dist_ij = calculate_distance(coordinates[i], coordinates[j])
+            total_energy += calculate_LJ(dist_ij)
+    
+    return total_energy
+~~~
+{: .language-python}
+
+In order to test this, let's create a system where we roughly know the energy. We will want a system of more than two particles, otherwise we are just testing the `calculate_LJ` function. We will have three particles which are spaced by a distance of $$2^{1/6}\sigma$$. We would expect this system of particles to have an energy of roughly $$-2\epsilon$$.
+
+~~~
+coordinates = [[0, 0, 0], [0, math.pow(2, 1/6), 0], [0, 2*math.pow(2, 1/6), 0]]
+
+test_energy = calculate_total_energy(coordinates)
+
+print(test_energy)
+~~~
+{: .language-python}
+
+~~~
+-2.031005859375
+~~~
+{: .output}
+
+This seems promising. The additional `0.031` is from the interaction of particles 1 and 3. The assert statement for this check will be a little different. We can use the function `math.isclose` to compare two numbers within a certain tolerance. If the numbers are close, `True` is returned, otherwise `False`.
+
+We can write our assert statement to check that the two values are within 5% of one another
+
+~~~
+assert math.isclose(total_energy, -2, rel_tol=0.05)
+~~~ 
+{: .language-python}
+
+### Reading coordinates from NIST file
+
+Now that we have functions for calculating the LJ energy for a system of particles, we can compare our calculated values to those reported by NIST. Use the provided `read_xyz` function below to read coordinates from the provided sample coordinate files:
 
 ~~~
 def read_xyz(filepath):
@@ -412,34 +483,15 @@ for i in range(3):
 ~~~
 {: .language-python}
 
-### Calculating the total pairwise LJ energy
+### Pairwise LJ energy for NIST system
 
-Information about cut-offs.
+When we try comparing our calculated energy to those reported by NIST, we will find that they are not the same. Because we've tested each of our functions as we've written them, we can be somewhat confident this isn't occurring because of errors in our code. 
 
-~~~
-total_energy = 0
-num_atoms = len(sample_coords)
-cutoff = 3.0
-
-count = 0
-for i in range(num_atoms):
-    count +=1
-    for j in range(i+1, num_atoms):
-        # Calculate the distance between the particles - exercise.
-        dist_ij = calculate_distance(sample_coords[i], sample_coords[j])
-        
-        if dist_ij < cutoff:
-            # Calculate the pairwise LJ energy
-            LJ_ij = calculate_LJ(dist_ij)
-
-            # Add to total energy.
-            total_energy += LJ_ij
-
-print(f'The total system energy is {total_energy}')
-~~~
-{: .language-python}
+Instead, it must be from different assumptions we are making about our system.
 
 ~~~
+coordinates, box_length = read_xyz(sample_config1.xyz)
+total_energy = calculate_total_energy(coordinates)
 assert total_energy == -4351.5
 ~~~
 {: .language-python}
@@ -453,7 +505,7 @@ AssertionError:
 ~~~
 {: .error}
 
-Your homework (explained on the next page), will partially be to implement a solution to this problem.
+Your homework (explained on the next page), will partially be to implement a solution to this problem. NIST uses a cutoff and periodic boundary conditions. Your homework will be to add this to your energy calculation.
 
 [numpy style docstrings]: https://docs.scipy.org/doc/numpy/docs/howto_document.html#numpydoc-docstring-guide
 
