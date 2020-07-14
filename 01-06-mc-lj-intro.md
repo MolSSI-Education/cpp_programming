@@ -170,16 +170,16 @@ The `docstring` should explain what the function or module does (and not how it 
 >
 > When you add a docstring to a function or module, python automatically adds this to the `__doc__` attribute of the object.
 >
-> You can also see an object's docstring by typing `object.__doc__` into the Python interpreter. For example, to see the docstring associated with the canvas function, `molecool.canvas.__doc__` into the Python interpreter (after importing `molecool`, of course.)
+> You can also see an object's docstring by typing `object.__doc__` into the Python interpreter. For example, to see the docstring associated with the calculate_LJ function, use `calculate_LJ.__doc__` )
 {: .callout}
 
 ### Sections of a Docstring
-There are many ways you could format this docstring (different styles/conventions). We recommend using [numpy style docstrings], and this is what the example above and `calculate_distance` function are written in.
+There are many ways you could format this docstring (different styles/conventions). We recommend using [numpy style docstrings], and this is what the example above and `calculate_LJ` function are written in.
 
 Each docstring has a number of sections which are separated by headings. Headings should be underlined with hyphens (`-----`). There are many options for sections, we will only cover the most relevant here. If you would like to see a full list, check out the documentation for [numpy style docstrings].
 
 #### 1. Short summary
-A one-line summary that does not use the variable name or the function name. In our `calculate_distance` function, this corresponds to the following.
+A one-line summary that does not use the variable name or the function name. In our `calculate_LJ` function, this corresponds to the following.
 
 ~~~
 """
@@ -201,7 +201,7 @@ Computes the pairwise Lennard Jones interaction energy based on the separation d
 #### 3. Parameters
 This section contains a description of the function arguments - keywords and expected types.
 
-The parameters for our `calculate_distance` function is shown below:
+The parameters for our `calculate_LJ` function is shown below:
 
 ~~~
 """
@@ -213,7 +213,7 @@ The parameters for our `calculate_distance` function is shown below:
 ~~~
 {: .language-python}
 
-Here, you can see that the parameter section begins with the section title ("Parameters"), followed by a line of hypens ("----"). On the next line, we have the argument name (r_ij), then a colon followed by the input type of the argument. This line says that the argument should be of type `float`. The next line gives a more detailed description of the variable. When the there is more than one input parameter,they should be written on new line.s
+Here, you can see that the parameter section begins with the section title ("Parameters"), followed by a line of hypens ("----"). On the next line, we have the argument name (r_ij), then a colon followed by the input type of the argument. This line says that the argument should be of type `float`. The next line gives a more detailed description of the variable. When the there is more than one input parameter,they should be written on new line.
 
 #### 4. Returns
 This section is very similar to the `Parameters` section above. In contrast to the `Parameters` section, each returned value does not have to be named, but the type of the return value is required.
