@@ -38,7 +38,7 @@ It is now our task to generate sample configurations of the system. As a consequ
 
 # Writing the Monte Carlo Loop
 
-Just like with our first Monte Carlo examples, we will be relying on random numbers to sample our configuration space. This translates into generating possible coordinates for our system. However, due to because our high dimensional integral is dominated by a relatively small region of configurational space, it would be very inefficient just pick random numbers for all of our particles. To overcome this problem, we will use the ideas of **importance sampling** and **detailed balance**.
+Just like with our first Monte Carlo examples, we will be relying on random numbers to sample our configuration space. This translates into generating possible coordinates for our system. However, due to because our high dimensional integral is dominated by a relatively small region of configurational space, it would be very inefficient just pick random numbers for all of our particles. To overcome this problem, we will use the ideas of **importance sampling**.
 
 ## Importance Sampling
 
@@ -64,7 +64,9 @@ This is a Markov Chain Monte Carlo method, meaning that acceptance of a random c
 
 ## Flow of Calculations
 
-The workflow for a implementing an MC simulation is summarized below
+The workflow for a implementing an MC simulation is shown in the image and summarized below
+
+<img src="../fig/mc_gif2.gif">
 
 1. Generate an initial system state $$m$$.
 1. Choose an atom with uniform probability from $$\{1, \ldots, N\}$$ from old state $$m$$.
