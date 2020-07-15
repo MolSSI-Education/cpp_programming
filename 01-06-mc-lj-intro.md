@@ -12,7 +12,6 @@ keypoints:
 - "Thermodynamic properties of a system can be thought of as a very high dimensional integral."
 - "We can use MC methods for this, but the calculation is more complicated due to the high dimensionality of the problem."
 - "We model pairwise atomic interactions using the Lennard Jones potential."
-- "When simulating molecular systems, we often use periodic boundary conditions to simulate an infinite system."
 ---
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
