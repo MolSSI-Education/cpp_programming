@@ -63,6 +63,7 @@ Next, we start a counter (`num_inside`) for keeping track of how many points hav
 ~~~
 num_inside = 0
 ~~~
+{: .language-python}
 
 To generate `n_samples` points, we use a `for` with the range function.
 
