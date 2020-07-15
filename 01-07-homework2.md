@@ -51,9 +51,7 @@ Most often when we are running a simulation with pairwise potentials, we will us
 
 A common cutoff distance is $$3 \sigma$$. Do you agree with this choice of cutoff?
 
-Add a cutoff to your potential energy calculation. You should modify the script so that the cutoff is a variable. Using the cutoff, the `LJ` potential energy should only be calculated `if` the distance between the particles is less than the cutoff, otherwise, the interaction energy is approximated as `0`.
-
-After you have plotted the LJ potential, add consideration of a cutoff to your total potential energy calculation.
+Add a cutoff to your potential energy calculation. You should modify the script so that the cutoff is a variable. Using the cutoff, the `LJ` potential energy should only be calculated `if` the distance between the particles is less than the cutoff, otherwise, the interaction energy between the two particles is approximated as `0`.
 
 ## Tail Correction
 Truncating interactions using a cutoff removes contribution to the potential energy that might be non negligible. The tail correction for our system can be calculated:
