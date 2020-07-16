@@ -223,7 +223,7 @@ print(elapsed_time)
 ~~~
 0.519495964050293
 ~~~
-{: .language-python}
+{: .output}
 
 We can see that our NumPy version is about 10 times faster than the one written in pure Python. This is a huge advantage to using NumPy - it can make your Python code much faster.
 
