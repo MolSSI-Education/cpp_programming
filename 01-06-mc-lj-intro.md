@@ -33,7 +33,7 @@ where $$Q\left(\textbf{r}^N\right)$$ is the thermodynamic quantity of interest t
 
 This integral is very hard to compute, even for small atomic systems. For instance, a monoatomic system of 10 atoms leads to a 30 dimensional integral. 
 
-We learned in the previous lesson about using Monte Carlo to evaluate integrals. We can apply this same approach to solve this integral. There are a few extra things we have to consider, however, because of the high dimensionality of the problem. We'll worry more about exactly how to implement this MC integration tomorrow. Today's lesson will focus on the model we are going to use for our Monte Carlo simulation.
+We learned in the previous lesson about using Monte Carlo to evaluate integrals. We can apply this same approach to solve this integral. There are a few extra things we have to consider, however, because of the high dimensionality of the problem. We'll worry more about exactly how to implement this MC integration tomorrow. Today's lesson will focus on the model we are going to use for our thermodynamic quantity (in our case the system potential energy). We will use this in our Monte Carlo simulation in the next lesson.
 
 ## Modeling the system
 
