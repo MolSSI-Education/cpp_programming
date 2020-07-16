@@ -382,15 +382,14 @@ collected 6 items
 
 tests/test_coord.py ......                            [100%]
 
----------- coverage: platform darwin, python 3.7.6-final-0 -----------
+---------- coverage: platform darwin, python 3.6.8-final-0 -----------
 Name                   Stmts   Miss  Cover
 ------------------------------------------
-mcsim/coord.py            24      0   100%
+mcsim/coord.py            33      8    76%
 mcsim/energy.py           34     34     0%
 mcsim/monte_carlo.py      51     51     0%
 ------------------------------------------
-TOTAL                    109     85    22%
-
+TOTAL                    118     93    21%
 
 ===================== 6 passed in 0.07s =====================
 ~~~
