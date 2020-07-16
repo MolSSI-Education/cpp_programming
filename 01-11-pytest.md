@@ -216,22 +216,23 @@ Next, it shows the values used in the assert comparison at runtime, that is ` 1.
 Change the expected value back to 1 so that your tests pass and make sure you have the `assert` statement.
 
 > ## Exercise
-> Create a second test for the `calculate_angle ` function. Use the following points:
+> Create a second test for the `calculate_distance ` function. Use the following points and box length:
 > ~~~
 > r1 = [0, 0, 0]
 > r2 = [0, 0, 8]
+> box_length = 10
 > ~~~
 > {: .language-python}
 >
-> These three points correspond to an angle of 90 degrees.
+> With periodic boundaries, these points correspond to a distance of 2.
 > 
 > Verify that your test is working by running pytest. You should now see two passing tests.
 >> ## Solution
 >> ~~~
 >> def test_calculate_distance2():
 >>     point_1 = [0, 0, 0]
->>     point_2 = [0, 8, 0]
->>     box_length = 10
+>>     point_2 = [0, 0, 8]
+>>     box_length = 2
 >>
 >>     expected_distance = 2
 >>     dist1 = calculate_distance(point_1, point_2, box_length=box_length)
@@ -240,34 +241,6 @@ Change the expected value back to 1 so that your tests pass and make sure you ha
 >> {: .language-python}
 > {: .solution}
 {: .challenge}
-
-
-
-Next we must have some coordinates to test. In our Jupyter Notebook, we were reading this data from an xyz file. However, remember that for unit tests, we do not want to make our test dependent on any other functions. Therefore, we will just make up some coordinates in our test.
-
-Next, there are several things we might test about this function. We could check that we find the correct number of bonds, and that those bonds are the correct length. You should write at least one test per function, but you may have multiple assertions in the same test. For example, we could write the following test for `build_bond_list`.
-
-~~~
-def test_build_bond_list():
-
-    coordinates = np.array([
-        [1, 1, 1],
-        [2.4, 1, 1],
-        [-0.4, 1, 1],
-        [1, 1, 2.4],
-        [1, 1, -0.4],
-    ])
-
-    bonds = molecool.build_bond_list(coordinates)
-
-    assert len(bonds) == 4
-
-    for bond_length in bonds.values():
-        assert bond_length == 1.4
-~~~
-{: .language-python}
-
-Here, we are asserting that the correct number of bonds were found, and next we are iterating through the dictionary to ensure that a distance of 1.4 angstrom was calculated for each bond.
 
 ## Advanced features of pytest
 
@@ -313,7 +286,7 @@ You might also use the `pytest.mark.xfail` if you expect a test to fail.
 
 ### Pytest Parametrize
 
-For our `calculate_distance` function we have only tested two conditions so far. This is not very complete, and we may be missing testing edge cases. You may think of writing another test where you change the values which you input into the calculation, or do a calculation with periodic boundaries. This is definitely something you can do, but `pytest` has a feature which makes it easy to run a test with multiple inputs/values - the `parametrize` mark.
+For our `calculate_distance` function we have only tested two conditions so far. This is not very complete, and we may be missing testing edge cases. You may think of writing another test where you change the values which you input into the calculation, or do multiple calculations with periodic boundaries. This is definitely something you can do, but `pytest` has a feature which makes it easy to run a test with multiple inputs/values - the `parametrize` mark.
 
 > ## Edge and Corner Cases
 > 
