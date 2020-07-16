@@ -260,7 +260,7 @@ Once your changes have been accepted, upstream will have those changes on the `m
 
 ## Incorporating upstream changes to local
 
-After your change has been accepted to mastter, you will want to incorporate the changes into your local master branch. First, switch to your master branch.
+After your change has been accepted to master, you will want to incorporate the changes into your local master branch. First, switch to your master branch.
 
 ~~~
 $ git switch master
