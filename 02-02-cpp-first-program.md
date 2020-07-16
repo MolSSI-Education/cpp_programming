@@ -136,21 +136,110 @@ If you build and run this executable again, the output should go where you expec
 
 ## Functions
 
-Words
+~~~
+// hello_world.cpp
+
+#include <iostream>
+
+void say_hello(std::string name)
+{
+    std::cout << "Hello, " << name << "!" << std::endl;
+}
+
+int main(void)
+{
+    say_hello("Ben");
+    say_hello("Hans");
+    return 0;
+}
+~~~
+{: .language-cpp}
 
 ## Conditional statements
 
-Words
+~~~
+// hello_world.cpp
+
+#include <iostream>
+
+void say_hello(std::string name)
+{
+    if(name == "Ben")
+    {
+        std::cout << "Hello, " << name << " (from Berkeley)" << std::endl;
+    }
+    else if(name == "Hans")
+    {
+        std::cout << "Hello, " << name << " (from MolSSI)" << std::endl;
+    }
+    else
+    {
+        std::cout << "Hello, " << name << " (from parts unknown)" << std::endl;
+    }
+}
+
+int main(void)
+{
+    say_hello("Ben");
+    say_hello("Hans");
+    return 0;
+}
+~~~
+{: .language-cpp}
 
 ## For loops
 
-Words
+~~~
+// hello_world.cpp
+
+#include <iostream>
+
+void say_hello(int i, std::string name)
+{
+    std::cout << i << ".) Hello, " << name << "!" << std::endl;
+}
+
+int main(void)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        say_hello("Ben");
+    }
+    return 0;
+}
+~~~
+{: .language-cpp}
+
+
+## Pitfall for Python programmers
+
+In C++, conditional statements and `for` loops introduce a new scope. Variables
+declared within these scopes cannot be accessed outside of the conditional
+or loop. This is allowed in Python, and is a common mistake in programmers moving
+from Python to C++.
+
+~~~
+int main(void)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        std::string name = "Ben";
+        say_hello("Ben");
+    }
+
+    // Error: name is undeclared here!
+    std::cout << "Bye, " << name << std::endl;
+    return 0;
+}
+~~~
+{: .language-cpp}
+
 
 ## Compiler Errors
 
-If there is a problem with your code, the compiler will print an elaborate error message. Reading
-can take experience and intuition, as the message is not always the most helpful (although things
-are improving).
+If there is a problem with your code, the compiler will print an elaborate
+error message. Reading can take experience and intuition, as the message is
+not always the most helpful (although things are improving).
 
 As a rule of thumb, I usually follow this workflow when dealing with errors:
 
