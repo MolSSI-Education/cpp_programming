@@ -12,5 +12,5 @@ objectives:
     - Modify your function `run_mc` so that coordinates are written out to an xyz file at the end of the simulation run.
     - **Bonus** - Modify your `run_mc` function so that coordinates are written every `freq` steps to an xyz file. Use this xyz file to get an averaged RDF.
 1. Write tests for the rest of your code.
-    - Write unit tests for each function. Remember that unit tests for a function should not rely on any other function. Use `pytest.mark.parametrize` for at least two of your tests.
+    - Write unit tests for your functions. Remember that unit tests for a function should not rely on any other function. Use `pytest.mark.parametrize` for at least two of your tests. You should divide this between group members. Aim for a code coverage of at least 85%.
     - Write a test which verifies that `calculate_total_pair_energy` calculates the correct value for a file from NIST. What kind of test (unit, integration, regression) is this?
