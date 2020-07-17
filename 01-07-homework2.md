@@ -15,7 +15,12 @@ keypoints:
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-## Fixing our LJ calculation
+## Individual Homework Assignment
+1. This should be completed by each group member individually (but you can discuss with your group). Write a python script that estimates the value of $$\pi$$ by evaluating the following integral:
+
+$$ \int_{0}^{1} \frac{1}{1 + x^2} dx $$
+
+## Group Work - Fixing our LJ calculation
 
 For this portion of the homework, you will work mostly as a group. You have each been added to a collaborative repository with your group members. During this workshop, you should complete homework assignments having to do with the Monte Carlo code on this central repository. You should divide the tasks for the homework, and each group member should make a pull request with their part of the homework. Each pull request should be reviewed by at least one person before merging.
 
