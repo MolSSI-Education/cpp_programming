@@ -23,3 +23,7 @@ For example, consider a particle at the origin. To calculate RDF, you consider a
 <img src="../fig/rdf_schematic.svg" height="400">
 
 Your homework is to calculate the radial distribution function for the final coordinates after 50,000 steps of MC simulation. You should pick another temperature to perform a second simulation and compare the two RDFs. A function for computing the RDF can be provided to you upon request, but it is a **bonus** if you write your own. You can see some instructions for writing calculating the RDF [here](http://www.physics.emory.edu/faculty/weeks/idl/gofr2.html).
+
+A sample radial distribution function is shown below
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Lennard-Jones_Radial_Distribution_Function.svg" height="400">
