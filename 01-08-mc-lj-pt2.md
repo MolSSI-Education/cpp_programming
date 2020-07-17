@@ -190,6 +190,13 @@ assert accept_or_reject(delta_e, beta) is True
 ~~~
 {: .language-python}
 
+After we've done these checks, it is a good idea to unset the random seed so that our numbers are random again:
+
+~~~
+random.seed()
+~~~
+{: .language-python}
+
 ## Energy Calculation
 
 In our Monte Carlo loop, we will be calculating the change in energy from a particle movement to decide whether to accept or reject that movement. Previously, we calculated the total pairwise energy for particles. However, when we move a particle, we only need to calculate the energy change for that one particle. We will write a new function for calculating the pairwise interaction energy of a single particle.
