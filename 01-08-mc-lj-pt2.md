@@ -321,7 +321,7 @@ for step in range(num_steps):
 1. Randomly pick one of N particles.
     For #1 we have to randomly pick one of N particles. This means we need a number on the range of 0 to 800. Take a look at [the documentation](https://docs.python.org/3/library/random.html) for the `random` module and see if you can find a function for this.
 
-    The function we will use is `rand.randrange`. If we add `num_particles` as an argument, it will pick a number between 0 to 799.
+    The function we will use is `rand.randrange`. If we add `num_particles` as an argument, it will pick a number between 0 and `num_particles` (For our NIST file, this would be between 0 and 799).
 
 1. Calculate the interaction energy of the selected particle with the system and store this value.
 
