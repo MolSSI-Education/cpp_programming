@@ -49,7 +49,7 @@ different 'feel' to the code, particularly when used side-by-side with older cod
 
 > ## "Modern C++"
 >
-> C++11 was considered a turning point in the C++ language, with the previous release
+> C++11 is considered a turning point in the C++ language, with the previous release
 > being C++98. Code written in C++11 or later style can look very different compared to
 > older code due to the addition of very helpful features and paradigms. This is sometimes
 > called "modern C++" although there is no precise definition.

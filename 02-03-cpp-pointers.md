@@ -383,3 +383,82 @@ int main(void)
 > using square brackets `[]`, except the `.at()` function will cause an error if the index
 > is beyond the bounds of the vector. Try it out and see!
 {: .callout}
+
+
+## References
+
+While pointers are inherited from C, C++ introduces a new but similar concept - a *reference* type.
+References are similar to pointers with a few key differences
+
+1. References must be set to reference an existing object
+1. References cannot be NULL/nullptr
+1. Once set, references cannot be *re-seated* (made to reference something else)
+1. De-referencing is not required
+
+References are created by using `&` with the type. For example,
+
+~~~
+std::string my_string = "Hello world!"; // Regular string
+std::string & ref_string = my_string; // Reference to my_string
+~~~
+{: .language-cpp}
+
+However, given the differences above
+
+~~~
+std::string & empty_ref; // not valid - reference must point to something
+
+std::string my_string = "Hello world!"; // Regular string
+std::string & ref_string = my_string; // Ok, reference to my_string
+
+std::string my_string_2 = "Hello again, world!"; // Regular string
+ref_string = my_string_2; // Error - cannot re-seat reference
+~~~
+{: .language-cpp}
+
+If we go back to our original pointer example, we can see that taking the address
+of the reference results int the same address as the pointed-to object.
+And, like pointers, the original object can be modified via the reference.
+
+~~~
+// pointers.cpp
+
+#include <iostream> // for std::cout, std::endl
+
+int main(void)
+{
+    int j = 1234;
+    std::cout << "Value of j: " << j << std::endl;
+
+    int & rj = j; // rj references j
+    std::cout << "Value of rj: " << rj << std::endl;
+
+    std::cout << "Address of j: " << &rj << std::endl;
+    std::cout << "Address of rj: " << &rj << std::endl;
+
+    // Change j via rj
+    rj = 5678;
+
+    std::cout << "Value changed!" << std::endl;
+    std::cout << "New Value of j: " << j << std::endl;
+    std::cout << "New Value of rj: " << rj << std::endl;
+
+    return 0;
+}
+~~~
+{: .language-cpp}
+
+
+~~~
+Value of j: 1234
+Value of rj: 1234
+Address of j: 0x7fff8727380c
+Address of rj: 0x7fff8727380c
+Value changed!
+New Value of j: 5678
+New Value of rj: 5678
+~~~
+{: .output}
+
+References are not often used by themselves, but are very common when passing arguments to
+functions (which we will see in the next lesson).

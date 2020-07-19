@@ -136,6 +136,8 @@ If you build and run this executable again, the output should go where you expec
 
 ## Functions
 
+<center><img src='../fig/cpp/function_terms.png'></center>
+
 ~~~
 // hello_world.cpp
 
