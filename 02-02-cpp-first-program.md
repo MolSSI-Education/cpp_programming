@@ -5,7 +5,7 @@ exercises: 5
 questions:
 - TODO
 objectives:
-- TODO
+- Be able to write and build a minimal C++ program
 keypoints:
 - TODO
 ---
@@ -40,14 +40,17 @@ int main(void)
 ~~~
 {: .language-cpp}
 
-This is basically the bare minimum of a C++ program. Lets take a look at this in detail
+This is basically the bare minimum of a C++ program. Lets take a look at
+this in detail
 
 1. This defines a function called `main`. It returns an `int` (integer) and takes no arguments (`void`)
 1. The *function body* is enclosed in curly braces.
 1. It simply returns the integer 0 to outside the function
 
-the `main` function is very important. It defines the first function that is called by the operating
-system. That is, by running the executable we will create, the `main` function is the starting point of our code.
+the `main` function is very important. It defines the first function that
+is called by the operating system. That is, by running the executable we
+will create, the `main` function is the starting point of our code.
+
 
 ### Building our executable
 
@@ -66,23 +69,27 @@ g++ hello_world.cpp -o hello_world
 The command is `g++`, which will both compile and link your code. `-o hello_world` specifies the
 final output name for our executable.
 
-If successful, there will be no output, and there will be a new file in the directory
-called `hello_world`.
+If successful, there will be no output from `g++`, and there will be a new
+file in the directory called `hello_world`.
 
 If you try running `hello_world`, nothing will happen! That is because we don't have
 any code that does anything.
 
 Now lets make our code actually do something
 
+
 ### Printing to the standard output
 
-Unlike python, C++ does not have a built-in way of printing to the terminal! To do so, you must
-use an external library. Fortunately, the C++ standard specifies the *C++ Standard Library*, containing
-many useful functions, including printing.
+Unlike python, C++ does not have a built-in way of printing to the terminal! To
+do so, you must use an external library. Fortunately, the C++ standard contains
+details about the **C++ Standard Library**, containing many useful functions,
+including printing. This is similar to Python's standard library, however
+it does not contain as much functionality.
 
-In order to use features of the standard library, you must `#include` the appropriate files. This is
-conceptually similar to the Python `import` statement - it allows you to use code defined somewhere
-else in the current file.
+In order to use features of the standard library, you must `#include`
+the appropriate files. This is conceptually similar to the Python `import`
+statement - it allows you to use code defined somewhere else in the current
+file.
 
 Printing to standard output is done via the `std::cout` object (pronounced
 *see-out*) and by using the `<<` (stream insertion) operator. These are
@@ -110,8 +117,18 @@ int main(void)
 {: .language-cpp}
 
 Now save and build this file the same way you did before. Running it will
-now print `Hello, world!` to the terminal, but you will notice that it does
-not put a newline afterwards, causing it to be on the same line as your prompt.
+now print `Hello, world!` to the terminal.
+
+
+~~~
+[ben@computer lessons]$ g++ hello_world.cpp -o hello_world
+[ben@computer lessons]$ ./hello_world 
+Hello, world![ben@computer lessons]$
+~~~
+{: .output}
+
+You will notice that it does not put a newline afterwards, causing it to be
+on the same line as your prompt.
 
 The solution to this is to place and endline character after the `Hello,
 world!`. There are several different ways to do this, but we will stick with
@@ -131,12 +148,37 @@ int main(void)
 {: .language-cpp}
 
 Notice that we can keep inserting into `std::cout` by chaining together `<<` operators.
-
 If you build and run this executable again, the output should go where you expect.
+
+~~~
+[ben@computer lessons]$ g++ hello_world.cpp -o hello_world
+[ben@computer lessons]$ ./hello_world 
+Hello, world!
+[ben@computer lessons]$ 
+~~~
+{: .output}
+
 
 ## Functions
 
+Functions in C++ are similar to functions in Python - they are reusable
+pieces of code that take arguments as input and return data. They can be used
+(called) from other pieces of code.
+
+C++ developers love to be picky about terminology. It is often necessary to
+be precise when talking about a language as complex as C++. In the following
+figure we introduce some terminology related to functions in C++.
+
 <center><img src='../fig/cpp/function_terms.png'></center>
+
+The return type is specified before the function name (and can be on its own
+line if necessary). Following the name is the function *signature*, which details
+the types and names of the arguments. After that, the function body is enclosed
+in curly braces, just like we say with the `main` function.
+
+Lets move our printing of "Hello, World!" to a separate function and call that
+from `main`. We will also have it take a string argument, so rather than saying
+"Hello" to the whole world, we will be a bit more specific.
 
 ~~~
 // hello_world.cpp
@@ -151,13 +193,25 @@ void say_hello(std::string name)
 int main(void)
 {
     say_hello("Ben");
+    say_hello("Jessica");
     say_hello("Hans");
     return 0;
 }
 ~~~
 {: .language-cpp}
 
+
 ## Conditional statements
+
+Conditional (`if`) statements are similar to those in Python, except:
+
+1. The conditional expression is placed in parentheses
+1. `and`/`or` are often replaced by symbols
+1. `elif` in Python is simply `else if` in C++.
+
+In C++, it is often customary to use `||` for `or` and `&&` for `and`.
+
+Other than that, they behave exactly the same as in Python.
 
 ~~~
 // hello_world.cpp
@@ -166,13 +220,13 @@ int main(void)
 
 void say_hello(std::string name)
 {
-    if(name == "Ben")
+    if(name == "Ben" || name == "Jessica")
     {
-        std::cout << "Hello, " << name << " (from Berkeley)" << std::endl;
+        std::cout << "Hello, " << name << " (from MolSSI)" << std::endl;
     }
     else if(name == "Hans")
     {
-        std::cout << "Hello, " << name << " (from MolSSI)" << std::endl;
+        std::cout << "Hello, " << name << " (from Berkeley)" << std::endl;
     }
     else
     {
@@ -183,13 +237,30 @@ void say_hello(std::string name)
 int main(void)
 {
     say_hello("Ben");
+    say_hello("Jessica");
     say_hello("Hans");
     return 0;
 }
 ~~~
 {: .language-cpp}
 
+
 ## For loops
+
+`for` loops are another basic building block, but they are a little different
+in C++. The `for` loop as a couple different parts in C++
+
+<center><img src='../fig/cpp/function_terms.png'></center>
+
+This is the general form, however there is great flexibility that can be exploited.
+
+> ## The increment/decrement operator
+> C++ has an increment (`++`) and decrement (`--`) operator that Python does not have.
+> These are equivalent to `+= 1` and `-= 1` in Python. And now you know where the
+> name C++ comes from.
+
+Let's write a `for` loop that calls our `say_hello` function a number
+of times.
 
 ~~~
 // hello_world.cpp
@@ -213,12 +284,12 @@ int main(void)
 {: .language-cpp}
 
 
-## Pitfall for Python programmers
+## A Pitfall for Python Programmers
 
 In C++, conditional statements and `for` loops introduce a new scope. Variables
 declared within these scopes cannot be accessed outside of the conditional
-or loop. This is allowed in Python, and is a common mistake in programmers moving
-from Python to C++.
+or loop. This is allowed in Python, and is a common mistake in programmers
+moving from Python to C++.
 
 ~~~
 int main(void)
