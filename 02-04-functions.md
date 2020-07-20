@@ -16,20 +16,24 @@ keypoints:
 
 ## Function overview
 
-<center><img src='../fig/cpp/function_terms.png'></center>
+Like in python, functions are a fundamental building block in C++.
 
+Let's refresh our memories of some of the terminology around functions. Note that
+this terminology is the same as in Python.
+
+<center><img src='../fig/cpp/function_terms.png'></center>
 
 ## The `void` Keyword
 
 `void` can be used in the signature to signify a function takes zero arguments,
 and can also be used as the return type to signify the function does not
-return anything.
+return anything. See, for example, our `main` function.
 
 ## The `const` Keyword
 
 In C/C++, it is possible to mark a variable as constant, such that it
 cannot be changed accidentially. Marking a variable as constant can also
-enable some performance improvements.
+enable some performance improvements, although these are typically very small.
 
 To do so, the keyword `const` is placed before the type.
 
@@ -45,13 +49,22 @@ most often used for declaring objects passed to functions as `const`.
 
 ## Argument passing by copy
 
+By default, arguments are passed into functions by copying the contents.
+The two main things to remember about passing via copying is that
+
+1. This can be expensive for large data types (think `vector` with many elements)
+1. Changes made to the data within the function are not reflected outside
+
+This last point can be a benefit, however, and can protect you from
+making accidental mistakes.
+
 ~~~
 // temperature
 
 #include <iostream> // for std::cout, std::endl
 #include <vector>
 
-std::vector<double> convert_temperature(const std::vector<double> & temperatures)
+std::vector<double> convert_temperature(std::vector<double> temperatures)
 {
     std::vector<double> new_temperatures;
     for(size_t i = 0; i < temperatures.size(); i++)
@@ -169,8 +182,8 @@ int main(void)
 
 > ## Comparison to Fortran
 > A `const` reference in a Function signature is similar to
-> an argument being declared as `intent(in)` in Fortran. A plain reference
-> would be similar to `intent(inout)`.
+> an argument being declared as `intent(in)` in Fortran. A plain non-`const`
+> reference would be similar to `intent(inout)`.
 {: .callout}
 
 
