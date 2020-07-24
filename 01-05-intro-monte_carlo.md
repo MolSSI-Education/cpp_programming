@@ -73,7 +73,7 @@ for i in range(n_samples):
 ~~~
 {: .language-python}
 
-As a reminder, this `for` loop will print all numbers from `0` to `100`. In this `for` loop, we don't really care about the value of `i`, we are just using it to make sure the operation is done 100 times. For each loop iteration we need to 
+As a reminder, this `for` loop will print all numbers from `0` to `99`. In this `for` loop, we don't really care about the value of `i`, we are just using it to make sure the operation is done 100 times. For each loop iteration we need to 
 
 1. Generate a random x point on the range 0 to 1
 1. Generate a random y point on the range 0 to 1
