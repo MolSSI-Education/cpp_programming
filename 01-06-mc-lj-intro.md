@@ -500,8 +500,7 @@ When we try comparing our calculated energy to those reported by NIST, we will f
 Instead, it must be from different assumptions we are making about our system.
 
 ~~~
-coordinates, box_length = read_xyz(sample_config1.xyz)
-total_energy = calculate_total_energy(coordinates)
+total_energy = calculate_total_energy(sample_coords)
 assert total_energy == -4351.5
 ~~~
 {: .language-python}
