@@ -411,7 +411,7 @@ This seems promising. The additional `0.031` is from the interaction of particle
 We can write our assert statement to check that the two values are within 5% of one another
 
 ~~~
-assert math.isclose(total_energy, -2, rel_tol=0.05)
+assert math.isclose(test_energy, -2, rel_tol=0.05)
 ~~~ 
 {: .language-python}
 
