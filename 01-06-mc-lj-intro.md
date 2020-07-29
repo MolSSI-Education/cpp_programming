@@ -436,8 +436,8 @@ def read_xyz(filepath):
     """
     
     with open(filepath) as f:
-        num_atoms = float(f.readline())
         box_length = float(f.readline().split()[0])
+        num_atoms = float(f.readline())
         coordinates = f.readlines()
     
     atomic_coordinates = []
@@ -458,6 +458,17 @@ def read_xyz(filepath):
 ~~~
 {: .language-python}
 
+Use the function to read in the first sample configuration:
+
+~~~
+import os
+
+config1_file = os.path.join('lj_sample_configurations', 'lj_sample_config_periodic1.txt')
+
+sample_coords, box_length = read_xyz(config1_file)
+~~~
+{: .language-python}
+
 
 ##### Sanity Checks
 
@@ -469,7 +480,7 @@ def read_xyz(filepath):
 assert len(sample_coords) == 800
 
 # We expect the first line to be:
-first_line = [-0.11263625932560001, 1.385093082507, -0.8842035145736]
+first_line = [-1.126362593256E-01, 1.385093082507E+00, -8.842035145736E-01]
 
 for i in range(3):
     assert first_line[i] == sample_coords[0][i]
