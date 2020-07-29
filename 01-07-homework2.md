@@ -20,6 +20,8 @@ keypoints:
 
 $$ \int_{0}^{1} \frac{1}{1 + x^2} dx $$
 
+This integral will evaluate to $$\frac{\pi}{4} $$
+
 ## Group Work - Fixing our LJ calculation
 
 For this portion of the homework, you will work mostly as a group. You have each been added to a collaborative repository with your group members. During this workshop, you should complete homework assignments having to do with the Monte Carlo code on this central repository. You should divide the tasks for the homework, and each group member should make a pull request with their part of the homework. Each pull request should be reviewed by at least one person before merging.
@@ -56,7 +58,7 @@ Most often when we are running a simulation with pairwise potentials, we will us
 
 A common cutoff distance is $$3 \sigma$$. Do you agree with this choice of cutoff?
 
-Add a cutoff to your potential energy calculation. You should modify the script so that the cutoff is a variable. Using the cutoff, the `LJ` potential energy should only be calculated `if` the distance between the particles is less than the cutoff, otherwise, the interaction energy between the two particles is approximated as `0`. This should go in your function `calculate_total_energy` and not in the `calculate_LJ` function.
+**Add a cutoff to your potential energy calculation**. You should modify the script so that the cutoff is a variable. Using the cutoff, the `LJ` potential energy should only be calculated `if` the distance between the particles is less than the cutoff, otherwise, the interaction energy between the two particles is approximated as `0`. This should go in your function `calculate_total_energy` and not in the `calculate_LJ` function.
 
 ## Tail Correction
 Truncating interactions using a cutoff removes contribution to the potential energy that might be non negligible. The tail correction for our system can be calculated:
@@ -147,6 +149,6 @@ def calculate_distance(coord1, coord2, box_length=None):
 ~~~
 {: .language-python}
 
-1. Recalculate your total potential energy using the new `calculate_distance` function, and check against the value from NIST.
+1. Recalculate your total potential energy using the new `calculate_distance` function, and check against the value from NIST. This will require you to collaborate with the person implementing the section on cutoffs.
     - Write an `assert` statement to check the NIST value.
 
