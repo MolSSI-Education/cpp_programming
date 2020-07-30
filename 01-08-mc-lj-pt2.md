@@ -290,7 +290,7 @@ Next, we set our change in energy to 0 and calculate the total energy of the sys
 ~~~
 delta_energy = 0
 
-total_energy = calculate_total_pair_energy(coordinates, box_length, cutoff)
+total_energy = calculate_total_energy(coordinates, box_length, cutoff)
 total_energy += calculate_tail_correction(num_particles, box_length, cutoff)
 ~~~
 {: .language-python}
@@ -363,7 +363,7 @@ coordinates, box_length = read_xyz('sample_config1.xyz')
 num_particles = len(coordinates)
 
 delta_energy = 0
-total_energy = calculate_total_pair_energy(coordinates, box_length, cutoff)
+total_energy = calculate_total_energy(coordinates, box_length, cutoff)
 total_energy += calculate_tail_correction(num_particles, box_length, cutoff)
 
 freq = 1000
