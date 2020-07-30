@@ -368,7 +368,7 @@ total_energy += calculate_tail_correction(num_particles, box_length, cutoff)
 
 freq = 1000
 
-step = []
+steps = []
 energies = []
 
 for step in range(num_steps):
