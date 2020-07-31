@@ -13,6 +13,8 @@ keypoints:
 
 1. **Exploring the Acceptance Criteria** - Calculate the probability of accepting a Monte Carlo move for energies ranging from -2 to 2 for T = 0.9, T = 0.4, and T = 1.4. What is the effect of temperature on the probability of a MC move being accepted? Create a plot showing your results.
 1. **Initial Configuration** - So far we have only used an initial configuration from a file. Write a function which can generate initial system configurations from a number of particles and box size (you could choose to have the user specify density instead of box size if you wished). Make sure your function includes docstrings!
+
+The function should return `coordinates, box_length` the same way our `read_xyz` function did so we can switch out the two without changing our code.
     - Write one function which places the specified number of particles randomly in the box.
     - **Bonus** - Write a second function which places particles on a square lattice.
 
