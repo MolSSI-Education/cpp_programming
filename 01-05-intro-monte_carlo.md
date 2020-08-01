@@ -5,6 +5,7 @@ exercises: 20
 questions:
 - "What are Monte Carlo methods?"
 - "How can I use Monte Carlo to estimate pi?"
+start: true
 objectives:
 - "Explain Monte Carlo methods."
 - "Apply Monte Carlo method to calculate pi."

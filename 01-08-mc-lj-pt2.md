@@ -2,6 +2,7 @@
 title: "Monte Carlo for a Lennard Jones Fluid - Part 2"
 teaching: 100
 exercises: 20
+start: true
 questions:
 - "How do I write a Monte Carlo simulation?"
 objectives:

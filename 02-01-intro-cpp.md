@@ -2,6 +2,7 @@
 title: "Intro to C++"
 teaching: 30
 exercises: 5
+start: true
 questions:
 - "What is the difference between compiled and interpreted languages?"
 - "What are the main advantages of C++ vs python?"

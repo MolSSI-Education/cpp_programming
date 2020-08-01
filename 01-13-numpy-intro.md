@@ -2,6 +2,7 @@
 title: "Working with Numpy Arrays"
 teaching: 45
 exercises: 20
+start: true
 questions:
 - "What are the differences between numpy arrays and lists?"
 - "How can I use NumPy to do calculations?"

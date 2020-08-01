@@ -2,6 +2,7 @@
 title: "Separating Code into Modules"
 teaching: 0
 exercises: 45
+start: true
 questions:
 - "How should I organize my code?"
 objectives:
