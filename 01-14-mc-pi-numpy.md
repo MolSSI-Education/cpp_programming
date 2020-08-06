@@ -166,6 +166,7 @@ Let's try timing how long it takes to calculate $$\pi$$ with 10 million samples 
 
 ~~~
 import time
+import random
 
 start = time.time()
 # Start by using 100 samples.
@@ -195,7 +196,7 @@ print(elapsed_time)
 {: .language-python}
 
 ~~~
-5.160427093505859
+0.6184561252593994
 ~~~
 {: .output}
 
@@ -221,7 +222,7 @@ print(elapsed_time)
 {: .language-python}
 
 ~~~
-0.519495964050293
+0.059281349182128906
 ~~~
 {: .output}
 
