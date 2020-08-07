@@ -16,7 +16,14 @@ keypoints:
 
 For this homework assignment, you will be collaborating with your team on a GitHub pages site. You will update this site with reflections during the course of the bootcamp. Today, everyone should contribute to the site. In the future, you should rotate so that one person each day is writing a reflection or summary on that day's topic. 
 
-You have been added as a collaborator to a repository. Follow the instructions on the sample blog to make your first update and submit a pull request. Everyone should submit an author profile and add a blog post. You should make a post where you introduce yourself.
+For today, you should interview and make a blog post about someone else on your team. Some questions you might think about...
+
+1. Where is your team member from?
+1. Where do they live?
+1. Why did they choose the MSSE degree?
+1. What is one thing the two of you have in common?
+
+You have been added as a collaborator to a repository. Follow the instructions on the sample blog to make your first update and submit a pull request. Everyone should submit an author profile and add a blog post.
 
 ## Prep for Tomorrow
 
