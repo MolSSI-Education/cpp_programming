@@ -23,7 +23,7 @@ For today, you should interview and make a blog post about someone else on your 
 1. Why did they choose the MSSE degree?
 1. What is one thing the two of you have in common?
 
-You have been added as a collaborator to a repository. Follow the instructions on the sample blog to make your first update and submit a pull request. Everyone should submit an author profile and add a blog post.
+You have been added as a collaborator to a repository. Follow the instructions on the sample blog to make your first update and submit a pull request. Everyone add a blog post.
 
 ## Prep for Tomorrow
 
