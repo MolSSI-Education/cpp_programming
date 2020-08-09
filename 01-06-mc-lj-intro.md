@@ -19,6 +19,20 @@ keypoints:
 
 This module is based on work by MolSSI Software Scientist Eliseo Marin-Rimoldi and Prof. John D. Chodera.
 
+<center>
+<div id="adobe-dc-view" style="width: 800px; height: 800px;"></div>
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+	document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
+		var adobeDCView = new AdobeDC.View({clientId: "fcecf2e7adab4e76874a9bb555d8c036", divId: "adobe-dc-view"});
+		adobeDCView.previewFile({
+			content:{location: {url: "https://msse-2020-bootcamp.github.io/lessons/files/intro-lennard-jones.pdf"}},
+			metaData:{fileName: "msse-intro.pdf"}
+		}, {embedMode: "SIZED_CONTAINER"});
+	});
+</script>
+ </center>
+
 ## Motivation - Using Monte Carlo on molecular systems
 
 We are going to use Monte Carlo simulation to solve a chemical problem. MC simulation is used in a lot of different fields, and one of those is molecular simulation. MC methods for molecules can be quite advanced these days, but for this bootcamp, we will be using MC to simulate noble gases.
