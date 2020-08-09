@@ -18,7 +18,7 @@ keypoints:
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-# Introduction 
+# Introduction
 
 <center>
 <div id="adobe-dc-view" style="width: 800px; height: 800px;"></div>
@@ -32,7 +32,7 @@ keypoints:
 		}, {embedMode: "SIZED_CONTAINER"});
 	});
 </script>
- </center>
+ </center><br><br> 
 
 This module will cover calculating pi using Monte Carlo integration. For this module, as well as for the initial Monte Carlo code, we will use only libraries and functions which are part of the [Python Standard Library](https://docs.python.org/3/library/). The Python Standard Library is the set of modules and functions that are distributed with Python. We will use Matplotlib (not part of Python standard library) for visualization.
 
