@@ -27,7 +27,7 @@ This module is based on work by MolSSI Software Scientist Eliseo Marin-Rimoldi a
 		var adobeDCView = new AdobeDC.View({clientId: "fcecf2e7adab4e76874a9bb555d8c036", divId: "adobe-dc-view"});
 		adobeDCView.previewFile({
 			content:{location: {url: "https://msse-2020-bootcamp.github.io/lessons/files/intro-lennard-jones.pdf"}},
-			metaData:{fileName: "msse-intro.pdf"}
+			metaData:{fileName: "intro-lennard-jones.pdf"}
 		}, {embedMode: "SIZED_CONTAINER"});
 	});
 </script>
