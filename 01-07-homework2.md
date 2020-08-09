@@ -16,7 +16,9 @@ keypoints:
 </script>
 
 ## Individual Homework Assignment
-1. This should be completed by each group member individually (but you can discuss with your group). Write a python script that estimates the value of $$\pi$$ by evaluating the following integral:
+1. This should be completed by each group member individually (but you can discuss with your group). **Individual assignments are due one week after being assigned**. The due date for this assignment is **August 18, 2020**.
+
+Write a python script that estimates the value of $$\pi$$ by evaluating the following integral:
 
 $$ \int_{0}^{1} \frac{1}{1 + x^2} dx $$
 
