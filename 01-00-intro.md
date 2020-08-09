@@ -15,7 +15,7 @@ questions:
 		adobeDCView.previewFile({
 			content:{location: {url: "https://msse-2020-bootcamp.github.io/lessons/files/msse-intro.pdf"}},
 			metaData:{fileName: "msse-intro.pdf"}
-		}, {embedMode: "IN_LINE"});
+		}, {embedMode: "SIZED_CONTAINER"});
 	});
 </script>
  </center>
