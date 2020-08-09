@@ -21,7 +21,7 @@ This module is based on work by MolSSI Software Scientist Eliseo Marin-Rimoldi a
 
 ## Motivation - Using Monte Carlo on molecular systems
 
-We are going to use Monte Carlo simulation to solve a chemical problem. MC simulation is used in a lot of different fields, and one of those is molecular simulation. MC methods for molecules can be quite advanced these days (link to something), but for this bootcamp, we will be using MC to simulate noble gases.
+We are going to use Monte Carlo simulation to solve a chemical problem. MC simulation is used in a lot of different fields, and one of those is molecular simulation. MC methods for molecules can be quite advanced these days, but for this bootcamp, we will be using MC to simulate noble gases.
 
 In statistical mechanics, we are interested in computing averages of thermodynamic properties as a function of atom positions an momenta. A thermodynamic average depending only on configurational properties can be computed by evaluating a multivariate integral.
 
