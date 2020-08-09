@@ -18,6 +18,22 @@ keypoints:
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
+# Introduction 
+
+<center>
+<div id="adobe-dc-view" style="width: 800px; height: 800px;"></div>
+<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+<script type="text/javascript">
+	document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
+		var adobeDCView = new AdobeDC.View({clientId: "fcecf2e7adab4e76874a9bb555d8c036", divId: "adobe-dc-view"});
+		adobeDCView.previewFile({
+			content:{location: {url: "https://msse-2020-bootcamp.github.io/lessons/files/pi_calculation.pdf"}},
+			metaData:{fileName: "msse-intro.pdf"}
+		}, {embedMode: "SIZED_CONTAINER"});
+	});
+</script>
+ </center>
+
 This module will cover calculating pi using Monte Carlo integration. For this module, as well as for the initial Monte Carlo code, we will use only libraries and functions which are part of the [Python Standard Library](https://docs.python.org/3/library/). The Python Standard Library is the set of modules and functions that are distributed with Python. We will use Matplotlib (not part of Python standard library) for visualization.
 
 Later in the course, we will also see how we can perform the calculations more quickly by utilizing the Python library NumPy.
