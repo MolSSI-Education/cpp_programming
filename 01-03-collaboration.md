@@ -100,9 +100,11 @@ Once the PR is created, you will see a page describing the PR. On the top of the
 
 During this section, we will all start from central repository where we are listed as collaborators, make changes, then submit something called a Pull Request to have those changes incorporated into the code. We will leave the package we are developing for this section.
 
-Navigate to the URL https://github.com/msse-2020-bootcamp/periodic-table in your web browser. You should see a GitHub repo. This repository contains code to make a website which has the periodic table. View the website https://msse-2020-bootcamp.github.io/periodic-table/ . On the website page, elements which appear with a red background have a page and information filled in. You can read more about each element by clicking on it. Elements with a white background do not yet have a page. Take a minute or two to click around. 
+Navigate to the URL https://github.com/msse-2020-bootcamp/periodic-table in your web browser. You should see a GitHub repo. This repository contains code to make a website which has the periodic table. View the website https://msse-2020-bootcamp.github.io/periodic-table/ . On the website page, elements which appear with a blue background and gold text have a page and information filled in. You can read more about each element by clicking on it. Elements with a white background do not yet have a page. Take a minute or two to click around. 
 
-Make a clone of the fork on your personal computer. Before you make the clone, MAKE SURE YOU ARE NOT IN A GIT REPOSITORY.
+You have all been added as collaborators to the project, so you can make changes. However, the `master` branch has been protected by the the repository owners so that you cannot push to master. We will have to make our changes on a branch.
+
+Make a clone of the repository on your personal computer. Before you make the clone, MAKE SURE YOU ARE NOT IN A GIT REPOSITORY.
 
 Type
 
@@ -123,30 +125,29 @@ If you do not see this message, navigate using `cd` until you do.
 Next, clone the repository to your computer. Use the green button (Clone or download) on your fork to get the fork URL.
 
 ~~~
-$ git clone <REPO-URL>
+$ git clone https://github.com/msse-2020-bootcamp/periodic-table.git
 $ cd periodic-table
 ~~~
 {: .bash}
 
-# Developing a new feature - creating branches
+# Developing a new page
 We will implement a new element for the webpage. Pick an element you would like to add information about. Create an issue on the central repository to let everyone else know you are planning to add a feature.
 
-Create a new branch in your repo with your element of choice. For this demo, I will be editing the sodium page. You should choose another element. This can either be an element that exists (red background), or an element that doesn't exist yet (white background).
+Create a new branch in your repo with your element of choice. For this demo, I will be editing the sodium page. You should choose another element. This can either be an element that exists (blue background), or an element that doesn't exist yet (white background).
 
 ~~~
-$ git switch -c sodium
+$ git switch -c YOUR_CHOSEN_ELEMENT
 ~~~
 {: .language-bash}
-Alternatively, we could have used the commands `git branch sodium` and `git checkout sodium`. In general, your branch name should describe the feature or changes that you plan to make on the branch.
 
 You will see the output
 
 ~~~
-Switched to a new branch 'sodium'
+Switched to a new branch 'YOUR_CHOSEN_ELEMENT'
 ~~~
 {: .output}
 
-We have now created a new branch called `sodium` and checked it out.
+We have now created a new branch called `YOUR_CHOSEN_ELEMENT` and checked it out.
 
 
 ## More about branching
@@ -166,7 +167,7 @@ Now, when we make a commit on the `sodium` branch, our changes will continue fro
 
 ## The importance of branching
 
-When you are doing development, particularly on a fork (but also if you are collaborating), it is very important that all development work be done on a branch. In the case of a collaborative repository where you are pushing directly, this will allow you to do pull requests from branches (more on pull requests below), and that your code is reviewed by another developer on the project before being merged to the master branch.
+When you are doing development, it is very important that all development work be done on a branch. In the case of a collaborative repository where you are pushing directly, this will allow you to do pull requests from branches (more on pull requests below), and that your code is reviewed by another developer on the project before being merged to the master branch.
 
 The most important reason to work on a branch is to keep your master branch clean. This will ensure that you **always have a working piece of software on the master branch.** It will make it easier to correct mistakes if they arise, and keep your repository clean if you have multiple collaborators. 
 
@@ -227,7 +228,7 @@ $ git push origin sodium
 ~~~
 {: .bash}
 
-Here, the last line indicates that we are pushing to `origin` (our fork) to the `sodium` branch. The branch name you type in place of sodium should match the name of the branch you are working on. If you view your repository on GitHub, you should now see that you have another branch in addition to the master branch.
+Here, the last line indicates that we are pushing to `origin` to the `sodium` branch. The branch name you type in place of sodium should match the name of the branch you are working on. If you view your repository on GitHub, you should now see that you have another branch in addition to the master branch.
 
 As part of the output from this command, you should see the following:
 
@@ -243,12 +244,12 @@ remote:
 
 ## Pull requests
 
-It is now time to incorporate the edits you have made in your fork into the original repository.
+It is now time to incorporate the edits you have made in your branch into the `master` branch.
 To do this, we must create a `Pull Request`.
 
 Navigate to the URL of the repository. You should see a highlighted area and green button which says "Compare and Pull Request". Alternatively, you can navigate to the URL given in the message where you did a push.
 
-Once you are on the page that says "Open a pull request", you should see fields which ask for the name of the pull request, as well as a larger text box which has space for a description. Make the title of this pull request "add sodium page". Edit the description to describe what you have done in your pull request.
+Once you are on the page that says "Open a pull request", you should see fields which ask for the name of the pull request, as well as a larger text box which has space for a description. Make the title of this pull request "add YOUR_ELEMENT page". Edit the description to describe what you have done in your pull request.
 
 Submit the pull request.
 
@@ -256,7 +257,7 @@ Now, your collaborators can review your material, and request changes if they fe
 
 Anyone can see Pull Requests on public repositories. Try reviewing a few pull requests on the periodic table repository. You can leave comments/reactions. Take a few minutes to review someone else's pull request.
 
-Once your changes have been accepted, upstream will have those changes on the `master` branch.. 
+Once your pull request has been accepted and merged, master will have the changes you made. 
 
 ## Incorporating upstream changes to local
 
