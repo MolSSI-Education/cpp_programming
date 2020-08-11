@@ -189,4 +189,17 @@ def calculate_distance(coord1, coord2, box_length=None):
 
 Recalculate your total potential energy using the new `calculate_distance` function, and check against the value from NIST. This will require you to consider the cut-off as well.
     - Write an `assert` statement to check the [NIST value](https://www.nist.gov/mml/csd/chemical-informatics-research-group/lennard-jones-fluid-reference-calculations). $$U_{pair}$$ on this page. We used `Configuration 1` in class.
+    
+    
+## Reviewing your teammate's change
+You will need to actually pull the changes from your teammate's branch when you are reviewing their pull request. You can pull their branch to your local computer by doing
+
+~~~
+$ git switch master
+$ git fetch 
+$ git switch TEAMMATE_BRANCH
+~~~
+{: .language-bash}
+
+You should then be able to see your teammates files. You should open their Jupyter notebook and review their code. If any changes are needed, leave this in your review on GitHub.
 
