@@ -24,6 +24,8 @@ $$ \int_{0}^{1} \frac{1}{1 + x^2} dx $$
 
 This integral will evaluate to $$\frac{\pi}{4} $$
 
+You can turn in your assignment [here](https://classroom.github.com/a/wKbj1ojc)
+
 ## Group Blog
 Read the information in this section and take 15 minutes or so to discuss as a group. Discussion of periodic boundaries and cutoffs should be included in your daily blog.
 
