@@ -90,36 +90,6 @@ def read_xyz(filepath):
         
     
     return atomic_coordinates, box_length
-
-def generate_random_coordinates(num_atoms, density):
-    """
-    Generate random coordinates in a box.
-
-    Parameters
-    ----------
-    num_atoms : int
-        The number of atoms to place
-    density : float
-        The target system density
-
-    Returns
-    -------
-    coordinates : list
-        The generated coordinates
-    box_length : float
-        The box length for the number of atoms and desired density.
-    """
-
-    box_length = math.pow(num_atoms/density, (1/3))
-    coordinates = []
-
-    for i in range(num_atoms):
-        x_val = random.uniform(0, p)
-        y_val = random.uniform(0, p)
-        z_val = random.uniform(0, p)
-        coordinates.append([x_val, y_val, z_val])
-    
-    return coordinates, box_length
     
 
 def calculate_distance(coord1, coord2, box_length=None):
