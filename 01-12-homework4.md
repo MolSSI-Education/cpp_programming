@@ -109,4 +109,4 @@ with pytest.raises(EXPECTED_ERROR)
 ## Testing
 1. Write tests for the rest of your code.
     - Write unit tests for your functions. You may need to divide this work between two people. For your tests, you can start by moving `assert` statements we wrote in class. Remember that unit tests for a function should not rely on any other function. Each person should use `pytest.mark.parametrize` for at one of your tests. You should divide this between group members.
-    - Write a test which verifies that `calculate_total_pair_energy` calculates the correct value for a file from NIST. What kind of test (unit, integration, regression) is this?
+    - Write a test which verifies that `calculate_total_energy` calculates the correct value for a file from NIST. What kind of test (unit, integration, regression) is this?
