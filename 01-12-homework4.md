@@ -98,7 +98,7 @@ def calculate_LJ(r_ij):
 ## Tasks
 
 ## Raising Errors
-1. Add a `try` and `except` statement to your `run_mc` function which will raise an error if two particles are overlapping (ie, if a `ZeroDivisionError` is raised by `calculate_LJ`. Print an informative message like - "Infinite energy calculated - particles overlapping! Halting MC simulation" if the error occurs. Make sure you have a test for this behavior. You can test for an expected exception using pytest by inserting the following into your function:
+1. Add a `try` and `except` statement to your `run_mc` function which will raise an error if two particles are overlapping (ie, if a `ZeroDivisionError` is raised by `calculate_LJ`. Print an informative message like - "Infinite energy calculated - particles overlapping! Halting MC simulation" if the error occurs. Make sure you have a test for this behavior. You can test for an expected exception using pytest by inserting the following into your test function:
 
 ~~~
 with pytest.raises(EXPECTED_ERROR)
