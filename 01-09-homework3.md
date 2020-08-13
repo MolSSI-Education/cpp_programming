@@ -25,7 +25,7 @@ A sample radial distribution function for a fluid is shown below. A peak indicat
 
 Something that has more order like a lattice structure will look more like the next figure. Notice that when atoms are on a lattice (regularly spaced), you also see regularly spaced peaks in the RDF.
 
-<img src='https://github.com/msse-2020-bootcamp/lessons/blob/gh-pages/fig/square_lattice.png' height='400'>
+<img src='../fig/square_lattice.png' height='400'>
 
 
 ## Homework Tasks
