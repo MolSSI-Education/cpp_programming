@@ -45,5 +45,5 @@ Your homework is to calculate the radial distribution function for the final coo
 Write a function called `cubic_lattice` which places a specified number of particles on a cubic lattice. The function should take a number of particles and a box length.
 - Turn your code for a bonus using [this link](https://classroom.github.com/a/ZvOfBPS_). The due date for a bonus is in one week, August 20, 2020.**
 
-This assignment did say `square lattice` at first - but we want a 3D lattice (ie cubic) rather than 2D lattice (square), so please write a function for a square lattice!
+This assignment did say `square lattice` at first - but we want a 3D lattice (ie cubic) rather than 2D lattice (square), so please write a function for a cubic lattice!
 
