@@ -715,6 +715,7 @@ def calculate_pair_energy(coordinates, i_particle, box_length, cutoff):
     
     return e_total
 ~~~
+{: .language-python}
 
 Finally, we edit our module `monte_carlo.py` which has functions related to Monte Carlo simulation. We put our loop for running MC into a function called `run_mc`
 
@@ -791,5 +792,6 @@ def run_simulation(coordinates, box_length, cutoff, reduced_temperature, num_ste
             energies.append(total_energy/num_particles)
             all_coordinates.append(coordinates)
 ~~~
+{: .language-python}
 
 You can now run your simulation in a Jupyter notebook as we did before we separated into modules.
