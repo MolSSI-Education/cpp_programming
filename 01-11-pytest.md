@@ -45,19 +45,12 @@ between modules, and how they combine and integrate together.
 - **System tests**: where you test your system as a whole to check if it meets all the
 requirements.
 
-Another important type of testing is **Regression tests**. In Regression tests,
-given a known input, does the software correctly and consistently return the correct
-values? This kind of testing can catch problems in previously working code that may has been broken by new changes or new features.
-
-It is highly encouraged to have Unit tests that *cover* most of your code. It is
-also helpful to have some Integration and System tests.
-
 In this lesson, we are focusing on unit testing.
-Same concepts here can be applied to perform Integration tests across modules.
+The same concepts here can be applied to perform Integration tests across modules.
 
 ## The pytest testing framework
 
-MolSSI recommends using the [pytest](https://pytest.org) testing framework.
+We recommend using the [pytest](https://pytest.org) testing framework.
 Other testing frameworks are available (such as unittest and nose tests);
 however, the combination of easy implementation, [parametrization of tests](https://docs.pytest.org/en/latest/parametrize.html),
 [fixtures](https://docs.pytest.org/en/latest/fixture.html), and [test marking](https://docs.pytest.org/en/latest/example/markers.html)
@@ -83,6 +76,7 @@ Add the following contents to the `test_coord.py` file.
 """
 Tests for the coord module
 """
+import os
 import sys
 
 # Add our folder to the system path so python can find our code.
@@ -232,7 +226,7 @@ Change the expected value back to 1 so that your tests pass and make sure you ha
 >> def test_calculate_distance2():
 >>     point_1 = [0, 0, 0]
 >>     point_2 = [0, 0, 8]
->>     box_length = 2
+>>     box_length = 10
 >>
 >>     expected_distance = 2
 >>     dist1 = calculate_distance(point_1, point_2, box_length=box_length)
