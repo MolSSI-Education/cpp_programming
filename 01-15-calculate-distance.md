@@ -262,7 +262,7 @@ def calculate_distance_np(coord1, coord2, box_length=None):
     if box_length:
         coord_dist = coord_dist - box_length * np.round(coord_dist / box_length)
 
-    if coord_dist.ndm < 2:
+    if coord_dist.ndim < 2:
         coord_dist = coord_dist.reshape(1, -1)
 
     coord_dist = coord_dist ** 2
