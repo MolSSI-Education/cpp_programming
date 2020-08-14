@@ -15,6 +15,10 @@ keypoints:
 - "NumPy has extensive documentation online - you should check this out if you need to do a computation."
 ---
 
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 [Numpy](https://numpy.org/) is a widely used Python library for scientific computing. It has a number of useful features, including the a data structure called an array. Compared to the built-in data types `lists` which we used previously, `numpy` arrays have many features which can help you in your data analysis. Properly using the features of numpy arrays will make your code much faster and more efficient.
 
 ## NumPy Arrays vs. Python Lists
@@ -30,13 +34,13 @@ import numpy as np
 import math 
 
 # Construct some coordinates
-coordinates = [[0, 0, 0], [0, 0, math.pow(2, 1/6)], [0, 0, 2 * math.pow(2, 1/6)]]
+coordinates = [[0, 0, 0], [0, 0, math.pow(2, 1/6)], [0, 0, 2 * math.pow(2, 1/6)], [math.pow(2, 1/6), 0, 0]]
 
 second_coordinate = coordinates[0]
 ~~~
 {: .language-python}
 
-Now that we have our first coordinate, let's imagine we wanted to do something to it. Let's imagine that we wanted to translate the position of the atom (much like we do in our Monte Carlo simulation!). We want to translate it 0.1 units in the x direction, -0.1 units in the y direction, and 0 units in the z direction.
+Now that we have our second coordinate, let's imagine we wanted to do something to it. Let's imagine that we wanted to translate the position of the atom (much like we do in our Monte Carlo simulation!). We want to translate it 0.1 units in the x direction, -0.1 units in the y direction, and 0 units in the z direction.
 
 Using the Python Standard Library as we have learned so far, we could write code for this translation:
 
@@ -59,9 +63,9 @@ In our code so far, we have written a lot of `for` loops. Use of NumPy, however,
 
 If an operation is performed with two arrays (or a list and an array), NumPy will guess that you want to do element-wise addition. In the code we just wrote, we actually wanted an answer that looked like
 
-`[x1 + x2, y1+ y2, z1+z2]`
+$$(x_1 + x_2, y_1+ y_2, z_1+z_2)$$
 
-where `second_atom = [x1, y1, z1]`, and `translation_vector = [x2, y2, z2]`. You will notice that in the `for` loop we wrote, we were using the same index `i` for both lists we were indexing into. Because of this, we can `numpy` arrays to more easily perform this calculation.
+where `second_atom = [x1, y1, z1]`, and `translation_vector = [x2, y2, z2]`. In other words, we added elememts with the same index together (or did the operation "element-wise"). You will also notice that in the `for` loop we wrote, we were using the same index `i` for both lists we were indexing into. Because of this, we can `numpy` arrays to more easily perform this calculation.
 
 Let's see how we would do the same operation as before using NumPy arrays. To cast a list as a numpy array, you use `np.array(list_name)`.
 
@@ -102,7 +106,7 @@ type(second_coordinate_np)
 numpy.ndarray
 ~~~
 
-What happens if we try this with a list?
+What happens if we try this were both variables are a list?
 
 ~~~
 type(second_coordinate)
@@ -131,6 +135,12 @@ When you use the `+` with two lists, it results in list concatenation, or the se
 > ## Concatenating NumPy arrays
 > If you wanted to concatenate the two numpy arrays, you could have done so with the `np.concatenate` function.
 {: .callout}
+
+
+~~~
+# Addition of two lists results in concatenation of the lists
+# Addition of to numpy arrays results in elements wise addition if possible
+~~~
 
 Element wise operations work with multiplication and division as well.
 
@@ -191,8 +201,88 @@ Element wise operations work with multiplication and division as well.
 > {: .solution}
 {: .challenge}
 
+## Array Shape
+The two arrays have to have compatible dimensions in order to be added. For example, if we try to add an array with two elements to an array of three elements, we will get an error.
+
+~~~
+my_array = np.array([0.2, 0.3])
+second_coordinate + my_array
+~~~
+{: .language-python}
+
+~~~
+ValueError: operands could not be broadcast together with shapes (3,) (2,) 
+~~~
+{: .error}
+
+This is because the two arrays have incompatible sizes. You can see the size of the array by using the command:
+
+~~~
+array_name.shape
+~~~
+
+For example, we can check the size of `second_coordinate_np`:
+
+~~~
+second_coordinate_np.shape
+~~~
+{: .language-python}
+
+> ## Check your understanding
+> Convert the variable `coordinates` to a NumPy array and save it with the variable name `coordinates_np`. Print the array shape.
+> 
+>> ## Answer
+>> ~~~
+>> coordinates_np = np.array(coordinates)
+>> print(coordinates_np.shape)
+>> ~~~
+>> {: .language-python}
+>>
+>> ~~~
+>> (4, 3)
+>> ~~~
+>> {: .language-python}
+> {: .solution}
+{: .challenge}
+
+Though hard to see from our example, when the shape of a NumPy array is given, the first number is the number of rows and the second number is the number of columns. When we use `coordinats_np.shape` it tells us `(4,3)`. This means we have 4 rows and 3 columns (which is what we would expect for four atoms in three dimensions).
+
+### Accessing Information in a Multidimensional Array
+In the Python standard library, we have been representing coordinate information in a nested list. This required us to use two sets of brackets for indexing. For example, to get the x value of atom index 3 from our nested list (Python Standard library), we could do the following:
+
+~~~
+atom_3 = coordinates[3]
+x_coord_atom_3 = atom_3[0]
+print(x_coord_atom_3)
+~~~
+{: .language-python}
+
+~~~
+1.122462048309373
+~~~
+{: .output}
+
+this could have been done in one line as well, note we have to use two sets of brackets:
+
+~~~
+print(coordinates[3][0])
+~~~
+{: .language-python}
+
+~~~
+1.122462048309373
+~~~
+{: .language-python}
+
+When accessing information in a NumPy array, we can put the indices in one set of brackets. You put the row you would like first, followed by the column:
+
+~~~
+coordinates[3, 0]
+~~~
+{: .language-python}
+
 ## Broadcasting
-Another special thing about numpy is something called **broadcasting**. Broadcasting occurs when you attempt mathematical operations on arrays that have different shapes. If possible, the smaller array is "broadcast" across the larger array.
+However, in order for this type of operation to work, the arrays do not have to be *exactly* the same size they just have to have compatible shapes! Another special thing about numpy is something called **broadcasting**. Broadcasting occurs when you attempt mathematical operations on arrays that have different shapes. If possible, the smaller array is "broadcast" across the larger array.
 
 Let's think about what would happen if we wanted to move every atom in our coordinate set by our translation vector.
 
@@ -221,14 +311,21 @@ print(new_coordinates)
 ~~~
 {: .output}
 
-If we think about the indices we were using for this operation, you will notice we were doing the following:
+If we think about the indices we were adding the x indices together, the y indices together, and the z indices together for the two arrays. You might write something that looks like this to express the addition:
 
-** MATRIX HERE **
+$$
+c_{translated} = 
+  \left[\begin{array}{rrr}
+    c_{11} + t_1 & c_{12} + t_2 & c_{13} + t_3 \\
+    c_{21} + t_1 & c_{22} + t_2 & c_{23} + t_3 \\
+    c_{31} + t_1 & c_{32} + t_2 & c_{33} + t_3 \\
+  \end{array}\right]
+$$
 
-Broadcasting in `numpy` allows us to achieve that with one command, rather than in multiple `for` loop. It is not even necessary for both things you are adding to be numpy arrays, only one must be a numpy array for broadcasting to work:
+NumPy is able to compare the shape of two arrays to see if they are compatible. When we examine the shape, we see that they both have `3` present. The shapes are compatible.Broadcasting in `numpy` allows us to achieve that with one command, rather than in multiple `for` loop. 
 
 ~~~
-new_coordinates_np = coordinates + translation_vector_np
+new_coordinates_np = coordinates_np + translation_vector_np
 
 print(new_coordinates_np)
 ~~~
@@ -257,6 +354,14 @@ np.shape(translation_vector_np)
 {: .output}
 
 When you typed, `coordinates + translation_vector_np`, numpy looked at the shapes of both arrays to figure out if they were compatible. 
+
+If we are using a NumPy array for operations, this check will always be performed. You can also multiply arrays by scalars:
+
+~~~
+10 * coordinates_np
+~~~
+{: .language-python}
+
 
 ## Logical comparisons
 
@@ -303,33 +408,49 @@ Previously, we would have done this with a `for` loop. However, the `numpy.mean`
 To calculate the mean, or average of a set of data, 
 
 ~~~
-np.mean(coordinates)
+coordinates_np.mean()
 ~~~
 {: .language-python}
 
 ~~~
--0.029640541574553616
+0.3741540161031243
 ~~~
 {: .output}
 
-When we use the mean function on an array without any other arguments, it will give us the average of all of the values. However, sometimes, we prefer to have the average of all the rows or columns instead. `NumPy` functions usually allow us to specify this using the `axis` command. For our example of the geometric mean, we would want the average of the `x` column, the average of the `y` column, and the average of the `z` column.
+When we use the mean function on an array without any other arguments, it will give us the average of all of the values. However, sometimes, we prefer to have the average of all the rows or columns instead. `NumPy` functions usually allow us to specify this using the `axis` command. When we specify `axis` we give an array axis over which to give an average. In our two dimensional array, we choose between axis=0 and axis=1.
+
+~~~
+print(coordinates_np.mean(axis=0))
+print(coordinates_np.mean(axis=1))
+~~~
+{: .language-python}
+
+Notice that when we calculate the mean of axis=0, we get an output array with 4 values, while when we calculate the mean of axis=1, we get 3 values.
+
+~~~
+[0.28061551 0.         0.84184654]
+[0.         0.37415402 0.74830803 0.37415402]
+~~~
+{: .output}
 
 Check the shape of our coordinates again:
 
 ~~~
-np.shape(coordinates)
+coordinates_np.shape
 ~~~
 {: .language-python}
 
 ~~~
-(800, 3)
+(4, 3)
 ~~~
 {: .output}
 
-If we want the column average (or the average of all the rows for a column), we would specify `axis=0` in our `mean` calculation.
+If we want the column average (or the average of all the rows for a column), we would want the average value of our columns. When we examine the shape, we see that the have `4` values for each column (and this is indicated in the shape index = 1) We expect that we will have three values - the average x, the average y, and the average z. One way you might think about it is to give the axis index for the number of values you expect to average. For example, if I want to calculate the geometric center of my set of atoms, I expect that I will be averaging 4 x values, 4 y values, and 4 z values. The size 4 is in shape index `0`. So, specify `axis=0` in my `mean` calculation.
 
 ~~~
 center = np.mean(data, axis=0)
 print(center)
 ~~~
 {: .language-python}
+
+There are a lot of ways to think about array axes, and it will be beneficial to do a google search to find another explanation. 
