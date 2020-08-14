@@ -21,89 +21,80 @@ keypoints:
 
 Previously, you have worked with the built-in types of `lists`. NumPy arrays seem similar, but offer some distinct advantages. 
 
-NumPy arrays take up less space, are faster, and have more mathematical operations associated with them. However, unlike lists, they elements all have to be the same type.
-
-There are also differences in how lists and numpy arrays behave. Let's look at some of these.
-
 First open a Jupyter notebook to record your work. 
 
-To use the numpy library, we have to import it. When `numpy` is imported, it is often shortened to `np`. 
-
-We will start with reading in some data from an `xyz` file. Read in the coordinates from `sample_config1.xyz` using the module with your Monte Carlo functions.
+To use the numpy library, we have to import it. When `numpy` is imported, it is often shortened to `np`. Define a system of three atoms as we have been using in many of our test cases:
 
 ~~~
-import os
-import mc_functions as mc
+import numpy as np
+import math 
 
-file_path = os.path.join('sample_configs', 'sample_config1.xyz')
-coordinates, box_length = mc.read_xyz(file_path)
-~~~
-{: .language-python}
+# Construct some coordinates
+coordinates = [[0, 0, 0], [0, 0, math.pow(2, 1/6)], [0, 0, 2 * math.pow(2, 1/6)]]
 
-Isolate the first coordinate:
-
-~~~
-first_atom = coordinates[0]
+second_coordinate = coordinates[0]
 ~~~
 {: .language-python}
 
-Now that we have our first coordinate, let's imagine we wanted to do something to it. Let's imagine that we wanted to translate the position of the atom (much like we do in our Monte Carlo simulation!). We want to translate it 0.1 units in the x direction and -0.1 units in the y direction.
+Now that we have our first coordinate, let's imagine we wanted to do something to it. Let's imagine that we wanted to translate the position of the atom (much like we do in our Monte Carlo simulation!). We want to translate it 0.1 units in the x direction, -0.1 units in the y direction, and 0 units in the z direction.
 
-In our previously written code, we implemented this in the following way:.
+Using the Python Standard Library as we have learned so far, we could write code for this translation:
 
 ~~~
-new_coordinate = deepcopy(first_atom)
-
 translation_vector = [0.1, -0.1, 0]
 
-new_coordinates[0] += translation_vector[0]
-new_coordinates[1] += translation_vector[1]
-new_coordinates[2] += translation_vector[2]
+new_coordinate = []
+for i in range(3):
+    translated_coordinate = second_coordinate[i] + translation_vector[i]
+    new_coordinate.append(translated_coordinate)
 ~~~
 {: .language-python}
 
 ~~~
-[-0.012636259325600002, 1.285093082507, -0.8842035145736]
+[0.1, -0.1, 1.122462048309373]
 ~~~
 {: .output}
 
-However, if we made our coordinates into NumPy arrays, we could have done this differently. One way numpy arrays and lists are different is that you can easily perform element-wise operations on numpy arrays without loops. You can make your code much faster if you use numpy element-by-element operations instead of loops. 
+In our code so far, we have written a lot of `for` loops. Use of NumPy, however, will allow us to avoid loops in many cases. Let's consider how we could perform our translation with NumPy instead. One way numpy arrays and lists are different is that you can easily perform element-wise operations on numpy arrays without using `for` loops. You can make your code much faster if you use numpy element-by-element operations instead of loops. 
 
 If an operation is performed with two arrays (or a list and an array), NumPy will guess that you want to do element-wise addition. In the code we just wrote, we actually wanted an answer that looked like
 
 `[x1 + x2, y1+ y2, z1+z2]`
 
-where `first_atom = [x1, y1, z1]`, and `translation_vector = [x2, y2, z2]`.
+where `second_atom = [x1, y1, z1]`, and `translation_vector = [x2, y2, z2]`. You will notice that in the `for` loop we wrote, we were using the same index `i` for both lists we were indexing into. Because of this, we can `numpy` arrays to more easily perform this calculation.
 
 Let's see how we would do the same operation as before using NumPy arrays. To cast a list as a numpy array, you use `np.array(list_name)`.
 
 ~~~
 import numpy as np
 
-first_atom_np = np.array(first_atom)
-translation_vector_np = np.array([0.1, -0.1, 0])
+# Create numpy array from list
+second_coordinate_np = np.array(second_coordinate)
+
+# Create a numpy array from list
+translation_vector_np = np.array(translation_vector)
 ~~~
 {: .language-python}
 
-Using the features of numpy arrays, we could have instead written
+Using the features of numpy arrays, we could have instead written the following instead of the original `for` loop.
 
 ~~~
-new_coordinates_np = first_atom_np + translation_vector_np
-print(new_coordinates)
+new_coordinate_np = second_coordinate_np + translation_vector_np
+print(new_coordinate_np)
 ~~~
 {: .language-python}
 
 ~~~
-[-0.012636259325600002, 1.285093082507, -0.8842035145736]
+[ 0.1        -0.1         1.12246205]
 ~~~
 {: .output}
 
-Numpy was smart - it looked at the shape of both of these variables, saw they were the same shape, and assumed we wanted to do element-wise operation. You could have also subtracted, multiplied, or divided these, and it would have performed element-wise operations.
+NumPy performed the addition operation on these two arrays in an element-wise fashion. The shape of both lists was compared, and because they were the same shape, element-wise operation was used. You could have also subtracted, multiplied, or divided these, and it would have performed element-wise operations.
 
 Note, that this only worked because at least one of these variables was a NumPy array.
 
 ~~~
-type(first_atom_np)
+type(second_coordinate_np)
 ~~~
 {: .language-python}
 
@@ -114,7 +105,7 @@ numpy.ndarray
 What happens if we try this with a list?
 
 ~~~
-type(first_atom)
+type(second_coordinate)
 ~~~
 {: .language-python}
 
@@ -124,26 +115,24 @@ list
 {: .output}
 
 ~~~
-first_atom + translation_vector
+# Adding two lists results in list concatenation
+second_coordinate + translation_vector
 ~~~
 {: .language-python}
 
 ~~~
-[-0.11263625932560001, 1.385093082507, -0.8842035145736, 0.1, -0.1, 0]
+[0, 0, 1.122462048309373, 0.1, -0.1, 0]
 ~~~
 {: .output}
 
-When you use the `+` with two lists, it results in list concatenation, or the second list being appended to the end of the first.
+
+When you use the `+` with two lists, it results in list concatenation, or the second list being appended to the end of the first. Element-wise operation is not possible on standard Python lists. You must use `for` loops to iterature through them.
 
 > ## Concatenating NumPy arrays
-> If you wanted to concatenate the two where `oxygen_coordinate` was a numpy array, you could have done so with the `np.concatenate` function.
+> If you wanted to concatenate the two numpy arrays, you could have done so with the `np.concatenate` function.
 {: .callout}
 
-You can add two arrays together, multiply arrays by scalars, or do element-wise multiplcation of arrays.
-
-For example, you can multiply two numpy arrays to get their element-wise product. This means that given two vectors `a = np.array([a0, a1, a2])` and `b = np.array([b0, b1, b2])`, `a * b = [a0*b0, a1*a1, a2*b2]`.
-
-In contrast, if `a` and `b` were lists, you would get an error. 
+Element wise operations work with multiplication and division as well.
 
 > ## Check your understanding
 > Consider the variable definitions for `a1` and `a2`. What does each print statement result in?
@@ -210,23 +199,38 @@ Let's think about what would happen if we wanted to move every atom in our coord
 If you were working with Python lists, or you didn't know about the features of numpy arrays, you might try to do this with a `for` loop. 
 
 ~~~
+num_atoms = len(coordinates)
 new_coordinates = []
 
-for atom in coordinates:
-    new_x = atom[0] + translation_vector[0]
-    new_y = atom[1] + translation_vector[1]
-    new_z = atom[2] + translation_vector[2]
+for n in range(num_atoms):
     
-    new_coordinates.append([new_x, new_y, new_z])
+    atom_coord = coordinates[n]
+    updated_coord = []
+    for i in range(3):
+        translated_coordinate = atom_coord[i] + translation_vector[i]
+        updated_coord.append(translated_coordinate)
+    
+    new_coordinates.append(updated_coord)
+    
+print(new_coordinates)
 ~~~
 {: .language-python}
 
-Broadcasting in `numpy` allows us to achieve that with one command, rather than a `for` loop. It is not even necessary for both things you are adding to be numpy arrays, only one.
+~~~
+[[0.1, -0.1, 0], [0.1, -0.1, 1.122462048309373], [0.1, -0.1, 2.244924096618746]]
+~~~
+{: .output}
+
+If we think about the indices we were using for this operation, you will notice we were doing the following:
+
+** MATRIX HERE **
+
+Broadcasting in `numpy` allows us to achieve that with one command, rather than in multiple `for` loop. It is not even necessary for both things you are adding to be numpy arrays, only one must be a numpy array for broadcasting to work:
 
 ~~~
-translated_coordinates = coordinates + translation_vector_np
+new_coordinates_np = coordinates + translation_vector_np
 
-print(new_coordinates)
+print(new_coordinates_np)
 ~~~
 {: .language-python}
 
@@ -238,7 +242,7 @@ np.shape(coordinates)
 {: .language-python}
 
 ~~~
-(800, 3)
+(3, 3)
 ~~~
 {: .output}
 
@@ -253,8 +257,6 @@ np.shape(translation_vector_np)
 {: .output}
 
 When you typed, `coordinates + translation_vector_np`, numpy looked at the shapes of both arrays to figure out if they were compatible. 
-
-It starts with the dimensions to the right, so when it saw to matching 3's it assumed you wanted to do element-wise operation this way, and stretched or 'broadcast' the smaller array to match the larger one.
 
 ## Logical comparisons
 
