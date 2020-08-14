@@ -19,3 +19,5 @@ For the second individual assignment, you will be comparing results from Monte C
 
 Take an hour or so to discuss with your teammates what changes you can make to your code to take advantage of the features of NumPy arrays. For this portion, take the first 30 minutes to think about this by yourself, then discuss for half an hour with your group. We will tell you one option for rewriting your code at the end of this discussion period.
 
+Consider each function in our code - which ones could benefit from using numpy arrays? Consider each function and include thoughts for each one in your blog post for today.
+
