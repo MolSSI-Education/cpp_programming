@@ -13,7 +13,7 @@ keypoints:
 
 ## Individual Assignment #2
 
-For the second individual assignment, you will be comparing results from Monte Carlo simulations to tabulatd experimental values reported by NIST. A link for this assignment will be posted by the end of the homework session.
+For the second individual assignment, you will be comparing results from Monte Carlo simulations to tabulatd experimental values reported by NIST. Start your assignment by clicking [this link](https://classroom.github.com/a/EyklTlS7).
 
 ## NumPy Monte Carlo
 
