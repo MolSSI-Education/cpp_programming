@@ -19,7 +19,7 @@ keypoints:
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
-[Numpy](https://numpy.org/) is a widely used Python library for scientific computing. It has a number of useful features, including the a data structure called an array. Compared to the built-in data types `lists` which we used previously, `numpy` arrays have many features which can help you in your data analysis. Properly using the features of numpy arrays will make your code much faster and more efficient.
+[Numpy](https://numpy.org/) is a widely used Python library for scientific computing. It has a number of useful features, including the a data structure called an array. Compared to the built-in data types `lists` which we used previously, `numpy` arrays have many features which can help you in your data analysis. Properly using the features of numpy arrays will make your code much faster and more efficient. 
 
 ## NumPy Arrays vs. Python Lists
 
@@ -454,3 +454,6 @@ print(center)
 {: .language-python}
 
 There are a lot of ways to think about array axes, and it will be beneficial to do a google search to find another explanation. 
+
+## Additional Reading
+If you are still working to understand NumPy, try reading the [Beginner's Tutorial](https://numpy.org/doc/stable/user/absolute_beginners.html).
