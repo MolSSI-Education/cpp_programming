@@ -2,6 +2,7 @@
 title: "Multi-file projects"
 teaching: 30
 exercises: 5
+start: true
 questions:
 - TODO
 objectives:
@@ -13,6 +14,97 @@ keypoints:
 > ## Prerequisites
 > - TODO
 {: .prereq}
+
+
+## Forward declarations
+
+Up until now, we have we have placed all of our functions in a single file.
+In real projects, this is very rarely the case.
+
+We now have to introduce a little more terminology around functions.
+
+1. A *function declaration* declares the existance of a function with
+   a particular name and signature.
+2. A *function definition* contains the actual code of the function.
+
+C++ has a rule called the *one definition rule* - every function can only
+be defined once. However, you can *declare* a function as many times as you like.
+
+<center><img src='../fig/cpp/function_terms_2.png'></center>
+
+Note that the declaration has a semicolon at the end. This is likely something
+you will forget at some point (I certainly still do).
+
+Take for example our temperature conversion function that takes a constant
+reference. If we place the `convert_F_to_C` function below the main function,
+it will not compile.
+
+~~~
+#include <iostream> // for std::cout, std::endl
+
+int main(void)
+{
+    double temperature = 68.1;
+    temperature = convert_F_to_C(temperature);
+
+    std::cout << "Temperature is " << temperature << std::endl;
+    
+    return 0;
+}
+
+double convert_F_to_C(double temperature)
+{
+    return temperature * 1.8 + 32;
+}
+~~~
+{: .language-cpp}
+
+~~~
+test.cpp: In function ‘int main()’:
+test.cpp:6:19: error: ‘convert_F_to_C’ was not declared in this scope
+    6 |     temperature = convert_F_to_C(temperature);
+      |   
+~~~
+{: .output}
+
+(Your error message may vary depending on compiler and version).
+
+The reason for this error is that the compiler is compiling your source file
+from the top down. When compiling the `main` function, it runs into a call to
+`convert_F_to_C`. In order to properly compile `main`, it needs to know the
+signature and return type of `convert_F_to_C`, however it does not have that
+information yet; that information is at the bottom of the file.
+
+To fix this, we can *forward declare* the function above the `main` function.
+
+~~~
+#include <iostream> // for std::cout, std::endl
+
+// Forward declaration of convert_F_to_C
+double convert_F_to_C(double temperature);
+
+int main(void)
+{
+    double temperature = 68.1;
+    temperature = convert_F_to_C(temperature);
+
+    std::cout << "Temperature is " << temperature << std::endl;
+    
+    return 0;
+}
+
+// Function definition
+double convert_F_to_C(double temperature)
+{
+    return temperature * 1.8 + 32;
+}
+~~~
+{: .language-cpp}
+
+The forward declaration tells the compiler all the info it needs to compile
+`main`. Actually linking the function into main is the job of the linker,
+called after compiling everything. At that point, the definition of
+`convert_F_to_C` is known.
 
 
 ## Header files
@@ -47,13 +139,13 @@ esoteric compiler errors.
 
 
 So lets split our project into three files - one containing `main`, one
-containing our `convert_temperature` function, and a header file for our
-`convert_temperature` functions.
+containing our `convert_F_to_C` function, and a header file for our
+`convert_F_to_C` functions.
 
 ### Create two source files
 
 We will create two source files. One will contain `main` and the other our
-`convert_temperature` function.
+`convert_F_to_C` function.
 
 ~~~
 // main.cpp
@@ -61,8 +153,8 @@ We will create two source files. One will contain `main` and the other our
 #include <iostream> // for std::cout, std::endl
 #include <vector>
 
-// Forward declaration of convert_temperature
-std::vector<double> convert_temperature(const std::vector<double> & temperatures);
+// Forward declaration of convert_F_to_C
+std::vector<double> convert_F_to_C(const std::vector<double> & temperatures);
 
 int main(void)
 {
@@ -71,7 +163,7 @@ int main(void)
     temperatures.push_back(-40.0);
     temperatures.push_back(123.4);
 
-    std::vector<double> new_temperatures = convert_temperature(temperatures);
+    std::vector<double> new_temperatures = convert_F_to_C(temperatures);
 
     for(size_t i = 0; i < new_temperatures.size(); i++)
     {   
@@ -88,7 +180,7 @@ int main(void)
 
 #include <vector>
 
-std::vector<double> convert_temperature(const std::vector<double> & temperatures)
+std::vector<double> convert_F_to_C(const std::vector<double> & temperatures)
 {
     std::vector<double> new_temperatures;
     for(size_t i = 0; i < temperatures.size(); i++)
@@ -114,7 +206,7 @@ g++ main.cpp temperature.cpp -o temperature
 {: .language-bash}
 
 This should compile just fine. Remember, we still have the forward declaration
-of `convert_temperature` at the top of `main.cpp`. The second step is to move that
+of `convert_F_to_C` at the top of `main.cpp`. The second step is to move that
 to a header file, `temperature.hpp`.
 
 
@@ -123,7 +215,7 @@ to a header file, `temperature.hpp`.
 
 #include <vector>
 
-std::vector<double> convert_temperature(const std::vector<double> & temperatures);
+std::vector<double> convert_F_to_C(const std::vector<double> & temperatures);
 ~~~
 {: .language-cpp}
 

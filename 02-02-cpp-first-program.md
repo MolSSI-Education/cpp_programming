@@ -25,6 +25,7 @@ creating a new directory for your C++ project, and creating a plain text file
 with the name `hello_world.cpp`.
 
 > ## File extensions
+>
 > C++ source files commonly end in `.cpp`, which is the convention we will use. However,
 > other people have different conventions: `.cxx` is other common extension. Compilers will
 > generally understand either extension to mean C++ source
@@ -80,11 +81,11 @@ Now lets make our code actually do something
 
 ### Printing to the standard output
 
-Unlike python, C++ does not have a built-in way of printing to the terminal! To
-do so, you must use an external library. Fortunately, the C++ standard contains
-details about the **C++ Standard Library**, containing many useful functions,
-including printing. This is similar to Python's standard library, however
-it does not contain as much functionality.
+Unlike python, C++ does not have a way of printing to the terminal built into
+the language! To do so, you must use an external library. Fortunately, the C++
+standard contains details about the **C++ Standard Library**, containing many
+useful functions, including printing. This is similar to Python's standard
+library, however it does not contain as much functionality.
 
 In order to use features of the standard library, you must `#include`
 the appropriate files. This is conceptually similar to the Python `import`
@@ -100,12 +101,10 @@ found in the `iostream` file that is part of the standard library.
 > with `std::`. C++ allows you to group functions, etc, into *namespaces*. These are conceptually
 > similar to python modules (with many differences of course). You tell the compiler which namespace
 > a function or object belongs to with the `::` operator (called the *scope resolution operator*).
-> Details about namespaces are beyond the scope of this course.
+> Details about namespaces are beyond the scope of this course (pun intended).
 {: .callout}
 
 ~~~
-// hello_world.cpp
-
 #include <iostream>
 
 int main(void)
@@ -119,7 +118,6 @@ int main(void)
 Now save and build this file the same way you did before. Running it will
 now print `Hello, world!` to the terminal.
 
-
 ~~~
 [ben@computer lessons]$ g++ hello_world.cpp -o hello_world
 [ben@computer lessons]$ ./hello_world 
@@ -127,16 +125,14 @@ Hello, world![ben@computer lessons]$
 ~~~
 {: .output}
 
-You will notice that it does not put a newline afterwards, causing it to be
-on the same line as your prompt.
+You will notice that it does not put a newline afterwards (as Python does),
+causing it to be on the same line as your prompt.
 
 The solution to this is to place and endline character after the `Hello,
 world!`. There are several different ways to do this, but we will stick with
-using `std::endl` from the standard library.
+using `std::endl` (for *endline*) from the standard library.
 
 ~~~
-// hello_world.cpp
-
 #include <iostream>
 
 int main(void)
@@ -159,17 +155,52 @@ Hello, world!
 {: .output}
 
 
+> ## Exercise
+>
+> Modify the main function so that it says "Hello, {yourname}" on a new line
+> below "Hello, world!"
+>
+>> ## Solution
+>>
+>> Two possible solutions are shown below
+>>
+>> ~~~
+>>#include <iostream>
+>>
+>>int main(void)
+>>{
+>>    std::cout << "Hello, world!" << std::endl;
+>>    std::cout << "Hello, Ben!" << std::endl;
+>>    return 0;
+>>}
+>>~~~
+>>{: .language-cpp}
+>> 
+>> ~~~
+>>#include <iostream>
+>>
+>>int main(void)
+>>{
+>>    std::cout << "Hello, world!" << std::endl << "Hello, Ben!" << std::endl;
+>>    return 0;
+>>}
+>>~~~
+>>{: .language-cpp}
+> {: .solution}
+{: .challenge}
+
+
 ## Functions
 
 Functions in C++ are similar to functions in Python - they are reusable
 pieces of code that take arguments as input and return data. They can be used
 (called) from other pieces of code.
 
-C++ developers love to be picky about terminology. It is often necessary to
+C++ developers love to be picky about terminology; it is often necessary to
 be precise when talking about a language as complex as C++. In the following
 figure we introduce some terminology related to functions in C++.
 
-<center><img src='../fig/cpp/function_terms.png'></center>
+<center><img width='70%' src='../fig/cpp/function_terms.png'></center>
 
 The return type is specified before the function name (and can be on its own
 line if necessary). Following the name is the function *signature*, which details
@@ -181,8 +212,6 @@ from `main`. We will also have it take a string argument, so rather than saying
 "Hello" to the whole world, we will be a bit more specific.
 
 ~~~
-// hello_world.cpp
-
 #include <iostream>
 
 void say_hello(std::string name)
@@ -192,13 +221,23 @@ void say_hello(std::string name)
 
 int main(void)
 {
-    say_hello("Ben");
-    say_hello("Jessica");
-    say_hello("Hans");
+    say_hello("Dr. Pritchard");
+    say_hello("Dr. Nash");
     return 0;
 }
 ~~~
 {: .language-cpp}
+
+The output should be
+
+~~~
+Hello, Dr. Pritchard!
+Hello, Dr. Nash!
+~~~
+{: .output}
+
+Here, our `say_hello` function takes an `std::string`. These can be output
+to the screen via `std::cout` like before.
 
 
 ## Conditional statements
@@ -209,22 +248,38 @@ Conditional (`if`) statements are similar to those in Python, except:
 1. `and`/`or` are often replaced by symbols
 1. `elif` in Python is simply `else if` in C++.
 
-In C++, it is often customary to use `||` for `or` and `&&` for `and`.
+The general template for if/else is
+
+~~~
+if(condition1)
+{
+    //{code}
+}
+else if(condition2)
+{
+    //{code}
+}
+else
+{
+    //{code}
+} 
+~~~
+{: .language-cpp}
+
+In C++, it is often customary to use `||` for **or** and `&&` for **and**.
 
 Other than that, they behave exactly the same as in Python.
 
 ~~~
-// hello_world.cpp
-
 #include <iostream>
 
 void say_hello(std::string name)
 {
-    if(name == "Ben" || name == "Jessica")
+    if(name == "Dr. Pritchard" || name == "Dr. Nash")
     {
         std::cout << "Hello, " << name << " (from MolSSI)" << std::endl;
     }
-    else if(name == "Hans")
+    else if(name == "Dr. Johansen")
     {
         std::cout << "Hello, " << name << " (from Berkeley)" << std::endl;
     }
@@ -236,52 +291,126 @@ void say_hello(std::string name)
 
 int main(void)
 {
-    say_hello("Ben");
-    say_hello("Jessica");
-    say_hello("Hans");
+    say_hello("Dr. Pritchard");
+    say_hello("Dr. Nash");
+    say_hello("Dr. Johansen");
     return 0;
 }
 ~~~
 {: .language-cpp}
 
+Notice that when doing comparisons, Two equal signs are used (`==`). This is the same in
+Python. A single equal sign is used for assignment.
+
+> ## Exercise
+>
+> Modify the `say_hello` function to account for your name and location.
+>
+>> ## Solution
+>>
+>>~~~
+>>#include <iostream>
+>>
+>>void say_hello(std::string name)
+>>{
+>>    if(name == "Dr. Pritchard" || name == "Dr. Nash")
+>>    {
+>>        std::cout << "Hello, " << name << " (from MolSSI)" << std::endl;
+>>    }
+>>    else if(name == "Dr. Johansen")
+>>    {
+>>        std::cout << "Hello, " << name << " (from Berkeley)" << std::endl;
+>>    }
+>>    else if(name == "Your name")
+>>    {
+>>        std::cout << "Hello, " << name << " (from Cool Place)" << std::endl;
+>>    }
+>>    else
+>>    {
+>>        std::cout << "Hello, " << name << " (from parts unknown)" << std::endl;
+>>    }
+>>}
+>>
+>>int main(void)
+>>{
+>>    say_hello("Dr. Pritchard");
+>>    say_hello("Dr. Nash");
+>>    say_hello("Dr. Johansen");
+>>    say_hello("Your name");
+>>    return 0;
+>>}
+>>~~~
+>>{: .language-cpp}
+> {: .solution}
+{: .challenge}
+
 
 ## For loops
 
-`for` loops are another basic building block, but they are a little different
-in C++. The `for` loop as a couple different parts in C++
+`for` loops are another basic building block of programming. They are a
+little different in C++; in C++, the basic `for` loop has a few different parts in C++
 
-<center><img src='../fig/cpp/function_terms.png'></center>
+<center><img width='70%' src='../fig/cpp/for_loop.png'></center>
 
-This is the general form, however there is great flexibility that can be exploited.
+This is the general form, however there is great flexibility that can be exploited
+for may other reasons. 
 
 > ## The increment/decrement operator
 > C++ has an increment (`++`) and decrement (`--`) operator that Python does not have.
 > These are equivalent to `+= 1` and `-= 1` in Python. And now you know where the
 > name C++ comes from.
 
-Let's write a `for` loop that calls our `say_hello` function a number
+Let's write a `for` loop that calls our simpler `say_hello` function a number
 of times.
 
 ~~~
-// hello_world.cpp
-
 #include <iostream>
 
-void say_hello(int i, std::string name)
+void say_hello(std::string name)
 {
-    std::cout << i << ".) Hello, " << name << "!" << std::endl;
+    std::cout << "Hello, " << name << "!" << std::endl;
 }
 
 int main(void)
 {
     for(int i = 0; i < 10; i++)
     {
-        say_hello("Ben");
+        say_hello("Dr. Pritchard");
     }
     return 0;
 }
 ~~~
 {: .language-cpp}
+
+
+> ## Exercise
+>
+> Modify the `say_hello` function so that it takes an additional argument specifying
+> the number of times it has been called (that is, the `i` variable from the `main`
+> function. It then prints that before the "Hello".
+>
+>> ## Solution
+>>
+>>~~~
+>>#include <iostream>
+>>
+>>void say_hello(std::string name, int count)
+>>{
+>>    std::cout << count << ".) Hello, " << name << "!" << std::endl;
+>>}
+>>
+>>int main(void)
+>>{
+>>    for(int i = 0; i < 10; i++)
+>>    {
+>>        say_hello("Dr. Pritchard", i);
+>>    }   
+>>    return 0;
+>>}
+>>~~~
+>>{: .language-cpp}
+>{: .solution}
+{: .challenge}
 
 
 ## A Pitfall for Python Programmers
@@ -307,12 +436,15 @@ int main(void)
 ~~~
 {: .language-cpp}
 
+In this example, 
+
 
 ## Compiler Errors
 
 If there is a problem with your code, the compiler will print an elaborate
-error message. Reading can take experience and intuition, as the message is
-not always the most helpful (although things are improving).
+error message. Interpreting these error messages can take experience and
+intuition, as the message is not always the most helpful (although things
+are improving in this area).
 
 As a rule of thumb, I usually follow this workflow when dealing with errors:
 
@@ -322,14 +454,14 @@ As a rule of thumb, I usually follow this workflow when dealing with errors:
 1. If more errors, go to step 1.
 
 Often, a single error will cascade, causing more errors further down in the
-code. It is possible that what looks like many errors are caused by a single
+code; it is possible that what looks like many errors are caused by a single
 small error. Therefore, fixing errors one-at-a-time and then rebuilding is
 usually a good approach, especially as you begin building experience. With
 time, you will be able to spot batches of errors that can be fixed at once.
  
 > ## C++ Compiler Error Contests
 > C++ compilers are known having very verbose, incomprehensible error messages. There
-> are contests to see how you can get the longest error messages with the shortest
+> are actually contests to see how you can get the longest error messages with the shortest
 > amount of code.
 {: .callout}
 
@@ -343,3 +475,5 @@ mess up are:
 1. Misspell `iostream`, `std::cout`, or `main`
 1. Forget the second `<<` (so that it reads `std::cout << "Hello, world!" std::endl`)
 
+The errors you receive depend on the compiler and version of the compiler
+you are using.

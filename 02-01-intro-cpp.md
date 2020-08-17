@@ -36,9 +36,10 @@ practice most C code is portable to C++.
 
 ## Versions of C++
 
-Like Python, C++ has several different versions (called 'standards'). These standards
+Like Python, C++ has several different versions (called *standards*). These standards
 are designed by a [committee](https://isocpp.org/std/the-committee), with input from
-the community.
+the community. The computational molecular sciences does have representation within
+the standards-making community, and members of CMS have made proposals to the committee.
 
 By now, C++11 (released around 2011) is very common and a recommended base standard
 to use. C++14 adds some relatively minor updates and is also generally acceptable.
@@ -48,13 +49,10 @@ C++ standards are designed to be backwards compatible, so that, for example,
 C++11 code is acceptable C++17 code. However, new features can create a
 different 'feel' to the code, particularly when used side-by-side with older code.
 
-> ## "Modern C++"
->
-> C++11 is considered a turning point in the C++ language, with the previous release
-> being C++98. Code written in C++11 or later style can look very different compared to
-> older code due to the addition of very helpful features and paradigms. This is sometimes
-> called "modern C++" although that phrase has no precise definition.
-{: .callout}
+C++11 is considered a turning point in the C++ language, with the previous release
+being C++98. Code written in C++11 or later style can look very different compared to
+older code due to the addition of very helpful features and paradigms. This is sometimes
+called "modern C++" although that phrase has no precise definition.
 
 
 ## Compiled languages
@@ -73,9 +71,15 @@ has been disassembled into a more human-readable format (purple and white).
 <center><img src='../fig/cpp/disassembly.png'></center>
 
 In interpreted/dynamic languages such as Python, the translation from source
-code to binary happens implicitly every time a line of code is used, whereas
+code to binary happens implicitly when a line of code is used, whereas
 in compiled languages this only happens at compile time, allowing for much
 more performant programs.
+
+> ## Pycache files
+>
+> Python does cache the results of interpreting code. That is what the
+> `.pyc` and `__pycache__` directories are for.
+{: .callout}
 
 There is a cost to compilation, though. In Python, for example, you may edit
 your code and then immediately run it to see what the effect of your change
@@ -85,19 +89,14 @@ in a longer feedback loop between code modification and running or testing.
 ### Compilation and linking
 
 There are two steps to creating a program or library from source code:
-compiling and linking.  It is common to use 'compilation' to mean both steps,
+compiling and linking. It is common to use 'compilation' to mean both steps,
 although it may be technically incorrect; the word 'building' is also used
-to refer to a combination of compiling and linking.
+to refer to a combination of compiling and linking.  Everything is even more
+confusing as compilers will often call the linkers for you, often by default.
 
 Compilation refers to the transformation of source code files to machine code,
 as shown in the figure above. Then, the `linker` combines all the compiled
 data (including external libraries) into a single library or executable.
-
-> ## Compilers and linkers
->
-> The above is even more confusing as compilers will often call the linkers for you
-> on the command line, often by default.
-{: .callout}
 
 <center><img src='../fig/cpp/compilation.png'></center>
 
@@ -110,14 +109,14 @@ Complex projects are often compiled/linked with a build system (such as
 [CMake](https://cmake.org)). These build systems can simplify building software
 with lots of interconnected pieces, even written in multiple programming
 languages. A discussion of build systems is beyond the scope of these lessons;
-our code can be build with a few commands saved inside a bash script.
+our code can be build with a few commands, possibly saved inside a shell script.
 
 
 ## Static typing
 
 One major difference between Python and C++ is that C++ is
-*statically-typed*. This means that variables are given a type and that once
-set, the type cannot change.
+*statically-typed*. This means that variables are given a type and once
+that type is set, it cannot change.
 
 In C/C++, the types of variable is given before the variable name
 
@@ -129,7 +128,7 @@ std::string s = "Hello";
 
 > ## Types in python
 > Python does have types, although they are not declared the same way as in C++,
-> and are often determined implicitly.
+> and are often determined implicitly at runtime.
 >
 > Try running the following in a jupyter notebook or in a python script
 >
@@ -170,6 +169,12 @@ void hello_world()
 Some types can be implicitly converted (such as between `int` and `double`). This can be
 the source of bugs, and compilers can be made to warn about such conversions.
 
+> ## Discussion
+>
+> The benefits of static typing have been long debated. Why would
+> static typing be beneficial? What are the drawbacks?
+{: .discussion}
+
 
 ## Basic C++ Syntax
 
@@ -183,8 +188,9 @@ The syntax of C++ can look similar to that of python, with a few differences.
 1. The return type of a function is specified before the function name; the function must return
    an object of that type and only that type.
 
-Here is the function for calculating the volume of a sphere in both Python and C++. Don't worry if
-you don't understand all the differences - we will explain more as the course goes on.
+Here is the function for calculating the volume of a sphere in both Python
+and C++. Don't worry if you don't understand all the differences - we will
+explain more as the course goes on.
 
 ~~~
 #include <cmath>
