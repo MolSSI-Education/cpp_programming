@@ -19,7 +19,7 @@ keypoints:
 This should be completed by each group member individually (but you can
 discuss with your group). **Individual assignments are due one week after
 being assigned**. The due date for this assignment is **August 25, 2020**.
-The link for the assignment is https://classroom.github.com/a/5paGSRsP
+The link for the assignment is [here](https://classroom.github.com/a/5paGSRsP).
 
 Your individual assignment is to rewrite the first homework in C++.
 In that assignment, you wrote a python script to estimate the value
