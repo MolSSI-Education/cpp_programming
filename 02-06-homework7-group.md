@@ -3,7 +3,7 @@ title: "Homework Assignment #7"
 teaching: 0
 exercises: 60
 questions:
-- "What's the homework for day 7?"
+- "What's the group homework for day 7?"
 objectives:
 - "Rewrite your mcsim python package into C++"
 keypoints:

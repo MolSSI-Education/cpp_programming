@@ -3,7 +3,7 @@ title: "Homework Assignment #7"
 teaching: 0
 exercises: 60
 questions:
-- "What's the homework for day 7?"
+- "What's the individual homework for day 7?"
 objectives:
 - "Use Monte-Carlo integration to compute an integral in C++"
 keypoints:
