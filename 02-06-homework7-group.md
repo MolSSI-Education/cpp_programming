@@ -49,6 +49,15 @@ double random_double(double lower_bound, double upper_bound)
    return dist(re);
 }
 
+/*! Generate a random integer within a given range
+    The generated integer will be on the range [a,b)
+*/
+double random_integer(int lower_bound, int upper_bound)
+{           
+   //dist will return [a,b] but we want [a,b)
+   std::uniform_int_distribution<int> dist(lower_bound, upper_bound-1);
+   return dist(re);
+}  
 
 int main(void)
 {
@@ -77,6 +86,11 @@ Below is the function for reading XYZ files in C++. Notice the `typedefs`
 and the example of how to use it in `main`.
 
 ~~~
+// Include these at the top of your file
+#include <fstream> // for reading/writing files
+#include <array>   // for std::array
+#include <vector>  // for std::vector
+#include <utility> // for std::pair
 
 // Make some types more convenient
 typedef std::array<double, 3> AtomCoord;
