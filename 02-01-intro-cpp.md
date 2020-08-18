@@ -226,7 +226,7 @@ and there are many nuances not captured here.
 | C++ Type           | Python Type | Description                          |
 | ------------------ | ----------- | ------------------------------------ |
 | bool               | bool        | True/False                           |
-| int                | int         | Decimal number (not floating point)  |
+| int                | int         | Integer number (not floating point)  |
 | double             | float       | Floating point number (64-bit)       |
 | std::string        | str         | String of characters                 |
 | std::vector        | list        | List/array of data                   |

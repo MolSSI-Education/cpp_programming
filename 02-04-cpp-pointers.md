@@ -559,6 +559,27 @@ In general, `std::array` should be preferred over C-style arrays.
 {: .challenge}
 
 
+## Typedefs
+
+The solution for the previous exercise shows that types can become cumbersome
+in C++. Fortunately, C++ defines a way to make types a little more manageable
+by allowing the programmer to give them a more descriptive name. This
+is done by the `typedef` keyword.
+
+~~~
+typedef std::array<double, 3> AtomCoord;
+typedef std::vector<AtomCoord> Coordinates;
+~~~
+{: .language-cpp}
+
+The types `AtomCoord` and `Coordinates` can now be used.
+
+~~~
+AtomCoord coord1 = {1.0, 2.0, 3.0};
+Coordinates coords;
+coords.push_back(coord1);
+~~~
+{: .language-cpp}
 
 
 ## References
