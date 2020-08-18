@@ -1,5 +1,5 @@
 ---
-title: "Homework Assignment #7"
+title: "Individual Assignment #3"
 teaching: 0
 exercises: 60
 questions:
