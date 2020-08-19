@@ -111,7 +111,6 @@ to it.
 {: .challenge}
 
 
-
 ## Argument passing by copy
 
 Now that we have gone over `void` and `const`, as well as pointers and
@@ -140,7 +139,7 @@ Fahrenheit to Celsius.
 
 void convert_F_to_C(double temperature)
 {
-    temperature = temperature * 1.8 + 32;
+    temperature = (temperature - 32.0)*(5.0/9.0);
 }
 
 int main(void)
@@ -163,7 +162,11 @@ Temperature is 68.1
 ~~~
 {: .output}
 
-You will notice that 
+You will notice that the value of `temperature` in the `main` function does
+not change, even though we changed it inside of `convert_F_to_C`. That is
+becuase the variable `temperature` inside `convert_F_to_C` is a copy of the
+`temperature` variable in `main`.
+
 
 >## Discussion
 > What would be a better way of writing the temperature function?
@@ -191,7 +194,7 @@ default way to pass in data the will be changed in the function.
 
 void convert_F_to_C(double & temperature)
 {
-    temperature = temperature * 1.8 + 32;
+    temperature = (temperature - 32.0)*(5.0/9.0);
 }
 
 int main(void)
@@ -211,7 +214,7 @@ of the `&` into the function signature of `convert_F_to_C`. The output shows tha
 this makes all the difference.
 
 ~~~
-Temperature is 154.58
+Temperature is 20.0556
 ~~~
 {: .output}
 
@@ -227,7 +230,7 @@ Temperature is 154.58
 >>void convert_F_to_C(double & temperature)
 >>{
 >>    std::cout << "In convert_F_to_C: " << &temperature << std::endl;
->>    temperature = temperature * 1.8 + 32;
+>>    temperature = (temperature - 32.0)*(5.0/9.0);
 >>}
 >>
 >>int main(void)
@@ -247,7 +250,7 @@ Temperature is 154.58
 >>~~~
 >>In main: 0x7ffe27c761e0
 >>In convert_F_to_C: 0x7ffe27c761e0
->>Temperature is 154.5
+>>Temperature is 20.0556
 >>~~~
 >>{: .output}
 >>
@@ -271,7 +274,7 @@ it will cause a compiler error.
 
 double convert_F_to_C(const double & temperature)
 {
-    return temperature * 1.8 + 32;
+    temperature = (temperature - 32.0)*(5.0/9.0);
 }
 
 int main(void)
@@ -296,26 +299,23 @@ int main(void)
 ## Argument passing by pointer
 
 An alternative to passing by reference is passing by pointer.  For C++,
-this is generally recommended much anymore, however is still very common in C.
+this is not generally recommended much anymore, however is still very common in C.
 
 To pass by pointer, mark the argument type in the function
 signature as a pointer type (with a `*`). When calling the function,
 you pass the address of the variable. The function directly
 accesses the variable with the `*` operator. 
 
-While not as common in C++, it is sometimes used to pass around
-memory directly allocated with `new` (although using `std::vector`
-and passing that around instead
-and then directly access (via `*`) the contents. This is very
-awkward for many types. Mainly reserved for passing in memory
-allocated with `new` (particularly arrays).
+While not as common in C++, it is sometimes used to pass around arrays 
+allocated with `new`, after which elements are accessed with `*`.
+This is very awkward for many other uses, where references are preferred.
 
 ~~~
 #include <iostream> // for std::cout, std::endl
 
 double convert_F_to_C(const double * temperature)
 {
-    return (*temperature) * 1.8 + 32;
+    temperature = (temperature - 32.0)*(5.0/9.0);
 }
 
 int main(void)
@@ -377,7 +377,7 @@ just a `double`, and the other that takes a `std::vector<double>`.
 
 double convert_F_to_C(const double & temperature)
 {
-    return temperature * 1.8 + 32;
+    temperature = (temperature - 32.0)*(5.0/9.0);
 }
 
 std::vector<double> convert_F_to_C(const std::vector<double> & temperatures)
@@ -422,3 +422,49 @@ int main(void)
 > clarification on your part.
 {: .callout}
 
+
+## Default Arguments
+
+A default for an argument can be supplied in the function signature. However,
+the given default argument must be of the correct type (not like in Python,
+where you can set the argument default to be None).
+
+~~~
+#include <iostream>
+
+double convert_F_to_C(double temperature = 0.0)
+{
+    return (temperature - 32.0)*(5.0/9.0);
+}
+
+int main(void)
+{
+    double temperature = 68.1;
+    convert_F_to_C(temperature);
+
+    std::cout << "Temperature is " << convert_F_to_C(68.1) << std::endl;
+    std::cout << "Temperature is " << convert_F_to_C() << std::endl;
+        
+    return 0;
+}
+~~~
+{: .language-cpp}
+
+~~~
+Temperature is 20.0556
+Temperature is -17.7778
+~~~
+{: .output}
+
+
+## Exceptions
+
+TODO
+
+## File input/output (fstreams)
+
+TODO
+
+## std::pair
+
+TODO
