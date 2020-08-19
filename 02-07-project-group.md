@@ -27,6 +27,9 @@ For this project, you should delve further into using Monte Carlo simulation to 
 You will need to either use your function which generates a random initial state or your function which generates a cubic lattice initial state. For this purpose, a function which takes in a desired density might be beneficial. 
 You will need to run these simulations long enough to ensure equilibration, ie the initial state has no influence on the measured properties. You can assess this by considering the energy of the system. When it has reached a steady state, you can assume it is equilibrated (this is a very crude estimate of equilibration). 
 
+Here is a function for calculating RDF.
+<script src="https://gist.github.com/janash/9b4d47733f481ea96851f3ed9544c7b4.js"></script>
+
 ## Final Presentation
 
 The final presentation should be 15 minutes in length. The three aspects of this course were software engineering, molecular simulation, and programming. You should address all three in your final presentation along with results from your final project.
