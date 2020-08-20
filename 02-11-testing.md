@@ -31,7 +31,7 @@ it with the rest of your files.
 
 Download the single file using your favorite method (browser, wget, curl, etc):
 
-[`https://raw.githubusercontent.com/catchorg/Catch2/v2.13.0/single_include/catch2/catch.hpp`]()
+[`https://raw.githubusercontent.com/catchorg/Catch2/v2.13.0/single_include/catch2/catch.hpp`](https://raw.githubusercontent.com/catchorg/Catch2/v2.13.0/single_include/catch2/catch.hpp`)
 
 
 ## Writing simple tests
