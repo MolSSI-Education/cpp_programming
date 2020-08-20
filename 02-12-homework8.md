@@ -19,7 +19,7 @@ keypoints:
 This should be completed by each group member individually (but you can
 discuss with your group). **Individual assignments are due one week after
 being assigned**. The due date for this assignment is **August 27, 2020**.
-The link for the assignment is [here](https://classroom.github.com/a/5paGSRsP).
+The link for the assignment is [here]https://classroom.github.com/a/YqPQ9fF0).
 
 Your individual assignment is to investigate some nuances related to
 floating-point precision. These details often crop up in scientific code,
