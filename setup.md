@@ -1,41 +1,54 @@
 ---
 title: Setup
 ---
-## Installing Python through Anaconda
-[Python](https://python.org/) is a popular language for scientific computing, and great for general-purpose programming as well. Installing all of its scientific packages individually can be a bit difficult, however, so we recommend the all-in-one installer Anaconda.
 
-Regardless of how you choose to install it, *please make sure you install Python version 3.x (e.g., 3.4 is fine, 2.7 is not)*.  Also, please set up your python environment at least a day in advance of the workshop. If you encounter problems with the installation procedure, the instructors will be available 30 minutes before the workshop begins to help you.
+# Setup
+Following this tutorial will require use of your own personal computer or laptop and installation of some software.
 
-## Windows - [Video Tutorial](https://www.youtube.com/watch?v=xxQ0mzZ8UvA)
+Please follow the instructions given here to make sure you have the necessary software installed. 
 
-1. Open the [Anaconda Windows download page](https://www.anaconda.com/download/#windows).
-2. Download the installer.  **Be sure you get the Python 3 version.**
-3. Double-click the installer icon and follow the setup instructions on screen.  You can use MOST of the default options.  The only exception is to check the **Make Anaconda the default Python** option.
+First see the appropriate section in the Operating System Specific Instructions, then everyone should do the portion in "Installation Instructions for Everyone".
 
-## Mac OS X - [Video Tutorial](https://www.youtube.com/watch?v=TcSAln46u9U)
+## Operating System Specific Installation Instructions
+Pick the appropriate operating system and follow these instructions
+1. [MacOS compiler installation](#mac-os)
+1. [Linux compiler installation](#linux)
+1. [Windows compiler installation](#windows)
 
-1. Open the [Anaconda MacOS download page](https://www.anaconda.com/download/#macos).
-2. Download the installer. **Be sure you get the Python 3 version.**
-3. Double click the installer icon and follow the setup instructions.  You can use all of the default options.
+## Mac OS
 
-## Obtain lesson materials
-1. Put link to download materials here.
-2. Create a folder called `cms-workshop` on your Desktop.
-3. Move the downloaded materials to the new folder.
-4. Unzip the file.  
+### Compilers
+MacOS users should [install XCode](https://developer.apple.com/xcode/). An easy way to install XCode is through the [Mac App Store](https://apps.apple.com/us/app/xcode/id497799835?mt=12).
 
-## Open the Terminal Window
-- Windows:  Click Windows Key + R, type cmd, press Enter.
-- MacOS: The Terminal application can be found in Applications -> Utilities -> Terminal.
+## Linux
 
-## Start a Jupyter notebook
-In the Terminal window, type
-```
-$ jupyter notebook
-```
-It may take a few seconds to load the page, especially if it is the first time you have ever used the jupyter notebook, so don't panic if nothing loads for a few seconds.  Then a new window should open in your default internet browser. Use the file navigation window to navigate to the `cms-workshop` folder.  In the upper right hand corner, click New, then choose Python 3 from the dropdown list.  You're ready to go!
+### Compilers
+Use this command to install compilers
+~~~
+sudo apt install build-essential
+~~~
+{: .language-bash}
+
+After this command has completed, proceed to the next section [Creating a MSSE Bootcamp conda environment](#creating-a-msse-bootcamp-conda-environment).
+
+## Windows
+If your computer uses the Windows operating system, we require installing Windows Subsystem for Linux (WSL). Follow the installation instructions at [this link](https://docs.microsoft.com/en-us/windows/wsl/install-win10). If you don’t have a preference on Linux distribution, we recommend installing Ubuntu 20.04. 
+
+Once WSL is installed, open your ‘Start’ menu and choose ‘Ubuntu’. This should open a terminal window. The first time you have opened Ubuntu, you may see a message which says “Installing, this may take a few minutes…”. After the installation is done, you will have to create a username and password. After these are created, you should be able to use the terminal.
+
+The Windows Subsystem for Linux is like running another computer inside your computer. It is a different operating system and has different software installed than your Windows computer. This means that software installed on one operating system is not available in the other.
+
+### Compilers
+After installing WSL, ou will need to install C++ compilers. Use this command to install compilers
+~~~
+sudo apt install build-essential
+~~~
+{: .language-bash}
+
+## Text Editor
+Everyone should have a text editor they can use to their code. If you do not have a preference for text editors, we recommend [Visual Studio Code](https://code.visualstudio.com/). If you are using WSL, see [these instructions](https://code.visualstudio.com/docs/remote/wsl) for installing Visual Studio Code for use with WSL.
 
 
 
 
-{% include links.md %}
+
