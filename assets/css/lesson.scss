@@ -46,6 +46,7 @@ $color-testimonial: #fc8dc1 !default;
 .make, .language-make     { @include cdSetup($color-source); }
 .matlab, .language-matlab { @include cdSetup($color-source); }
 .python, .language-python { @include cdSetup($color-source); }
+.cpp, .language-cpp       { @include cdSetup($color-source); }
 .r, .language-r           { @include cdSetup($color-source); }
 .sql, .language-sql       { @include cdSetup($color-source); }
 
@@ -57,6 +58,7 @@ $color-testimonial: #fc8dc1 !default;
 .make::before, .language-make::before,
 .matlab::before, .language-matlab::before,
 .python::before, .language-python::before,
+.cpp::before, .language-cpp::before,
 .r::before, .language-r::before,
 .sql::before, .language-sql::before {
     background-color: #f2eff6;
@@ -73,6 +75,7 @@ $color-testimonial: #fc8dc1 !default;
 .make::before, .language-make::before { content: "Make"; }
 .matlab::before, .language-matlab::before { content: "Matlab"; }
 .python::before, .language-python::before { content: "Python"; }
+.cpp::before, .language-cpp::before { content: "C++"; }
 .r::before, .language-r::before { content: "R"; }
 .sql::before, .language-sql::before { content: "SQL"; }
 
@@ -94,7 +97,7 @@ ul.nav.nav-tabs {
 // 9.24 on FFFFFF: https://webaim.org/resources/contrastchecker/?fcolor=204A6F&bcolor=FFFFFF&api (body)
 // 8.78 on F9F9F9: https://webaim.org/resources/contrastchecker/?fcolor=204A6F&bcolor=F9F9F9&api (tables)
 // 7.07 on E1E1E1: https://webaim.org/resources/contrastchecker/?fcolor=204A6F&bcolor=E1E1E1&api (tab panels)
-a { color: #204A6F; }
+a { color: #0d11fc; }
 
 //----------------------------------------
 // Specialized blockquote environments for learning objectives, callouts, etc.
