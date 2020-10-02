@@ -2,7 +2,6 @@
 title: "Function Calling and Arguments"
 teaching: 30
 exercises: 5
-start: true
 questions:
 - TODO
 objectives:
