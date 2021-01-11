@@ -29,8 +29,6 @@ sudo apt install build-essential
 ~~~
 {: .language-bash}
 
-After this command has completed, proceed to the next section [Creating a MSSE Bootcamp conda environment](#creating-a-msse-bootcamp-conda-environment).
-
 ## Windows
 If your computer uses the Windows operating system, we require installing Windows Subsystem for Linux (WSL). Follow the installation instructions at [this link](https://docs.microsoft.com/en-us/windows/wsl/install-win10). If you don’t have a preference on Linux distribution, we recommend installing Ubuntu 20.04. 
 
